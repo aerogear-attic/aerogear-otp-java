@@ -63,9 +63,9 @@
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="Generate.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/abstractj/cuckootp/qrcode/Generate.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/abstractj/cuckootp/totp/Generate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="24" selection-start="223" selection-end="227" vertical-scroll-proportion="0.0">
+            <state line="9" column="25" selection-start="267" selection-end="271" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -76,7 +76,7 @@
       <file leaf-file-name="Barcode.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/abstractj/cuckootp/qrcode/Barcode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="79" selection-start="483" selection-end="483" vertical-scroll-proportion="0.37300178">
+            <state line="21" column="39" selection-start="660" selection-end="660" vertical-scroll-proportion="0.5462185">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -164,7 +164,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/org/abstractj/cuckootp/token/TOTPTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/abstractj/cuckootp/token/PasscodeGenerator.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/abstractj/cuckootp/token/TOTPUtils.java" />
@@ -179,6 +178,7 @@
         <option value="$PROJECT_DIR$/src/main/java/org/abstractj/cuckootp/qrcode/HintType.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/abstractj/cuckootp/qrcode/HintCharset.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/abstractj/cuckootp/qrcode/Hint.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/abstractj/cuckootp/totp/Generate.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/abstractj/cuckootp/qrcode/Barcode.java" />
       </list>
     </option>
@@ -391,7 +391,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_directory_selection" value="$PROJECT_DIR$/src/test/java/org/abstractj/cuckootp/token" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/test/java/org/abstractj/cuckootp/totp" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
@@ -419,6 +419,7 @@
       <recent name="org.abstractj.cuckootp.token" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.abstractj.cuckootp.totp" />
       <recent name="org.abstractj.cuckootp.token" />
     </key>
   </component>
@@ -430,7 +431,7 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="org.abstractj.cuckootp.qrcode.Generate" />
+      <option name="MAIN_CLASS_NAME" value="org.abstractj.cuckootp.totp.Generate" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -654,7 +655,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24892704" sideWeight="0.6704" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -775,22 +776,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/abstractj/cuckootp/totp/KeyUri.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="57" selection-start="292" selection-end="292" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/abstractj/cuckootp/qrcode/Generate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="24" selection-start="223" selection-end="227" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/abstractj/cuckootp/qrcode/Hints.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="0" selection-start="180" selection-end="180" vertical-scroll-proportion="0.0">
@@ -808,9 +793,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/abstractj/cuckootp/totp/KeyUri.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="57" selection-start="292" selection-end="292" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/abstractj/cuckootp/totp/Generate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="25" selection-start="267" selection-end="271" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/abstractj/cuckootp/qrcode/Barcode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="79" selection-start="483" selection-end="483" vertical-scroll-proportion="0.37300178">
+        <state line="21" column="39" selection-start="660" selection-end="660" vertical-scroll-proportion="0.5462185">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

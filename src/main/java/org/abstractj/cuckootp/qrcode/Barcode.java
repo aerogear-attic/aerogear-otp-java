@@ -12,7 +12,7 @@ public class Barcode {
     private static final int QRCODE_WIDTH = 400;
     private static final int QRCODE_HEIGHT = 400;
     public static final String QRCODE_FILE_NAME = "qrcode.png";
-    public static final String IMAGE_FORMAT = "IMAGE_FORMAT";
+    public static final String IMAGE_FORMAT = "PNG";
 
     public static void generate(String data) {
 
