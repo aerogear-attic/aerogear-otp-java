@@ -34,7 +34,7 @@ public class Generate {
         try {
             Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>(2);
             hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
-            matrix = writer.encode(data, com.google.zxing.BarcodeFormat.QR_CODE, qrcodeWidth, qrcodeHeight, hints);
+            matrix = writer.encode("HTTP://WWW.GOOGLE.COM", com.google.zxing.BarcodeFormat.QR_CODE, qrcodeWidth, qrcodeHeight, hints);
             MatrixToImageWriter.writeToFile(matrix, "PNG", new File("qrcode.png"));
         } catch (com.google.zxing.WriterException e) {
             e.printStackTrace();
