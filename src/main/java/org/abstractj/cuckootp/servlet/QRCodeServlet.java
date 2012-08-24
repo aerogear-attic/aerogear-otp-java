@@ -30,6 +30,6 @@ public class QRCodeServlet extends HttpServlet {
 
         String data = KeyUri.format(account.getName(), account.getSecret());
 
-        Barcode.generate(data);
+        Barcode.generate(data, response.getOutputStream());
     }
 }

@@ -3,10 +3,15 @@ package org.abstractj.cuckootp.totp;
 import org.abstractj.cuckootp.model.Account;
 import org.abstractj.cuckootp.qrcode.Barcode;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
 
 public class Generate {
 
-    public static void main(String[] args) {
+    public static final String QRCODE_FILE_NAME = "qrcode.png";
+
+    public static void main(String[] args) throws Exception{
 
         Account account = new Account();
         account.setName("joe");
@@ -16,7 +21,9 @@ public class Generate {
 
         System.out.println(data);
 
-        Barcode.generate(data);
+        FileOutputStream outputStream = new FileOutputStream(new File(QRCODE_FILE_NAME));
+
+        Barcode.generate(data, outputStream);
     }
 
 
