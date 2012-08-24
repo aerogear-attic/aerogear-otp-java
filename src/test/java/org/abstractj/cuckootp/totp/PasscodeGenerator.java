@@ -1,4 +1,4 @@
-package org.abstractj.cuckootp.token;
+package org.abstractj.cuckootp.totp;
 
 //Copyright (C) 2009 Google Inc.
 

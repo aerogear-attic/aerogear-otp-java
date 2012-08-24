@@ -1,4 +1,4 @@
-package org.abstractj.cuckootp.token;
+package org.abstractj.cuckootp.totp;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
