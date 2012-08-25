@@ -15,7 +15,7 @@ public class Generate {
 
         Account account = new Account();
         account.setName("joe");
-        account.setSecret(TOTPUtils.generateSecret());
+        account.setSecret(TotpUtils.generateSecret());
 
         String data = KeyUri.format(account.getName(), account.getSecret());
 

@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Random;
 
-public class TOTPUtils {
+public class TotpUtils {
 
 	private static final int SECRET_SIZE = 10;
 
@@ -46,7 +46,7 @@ public class TOTPUtils {
 		long currentInterval = getCurrentInterval();
 
 		for (int i = -window; i <= window; ++i) {
-			long hash = TOTP.generateTOTP(decodedKey, currentInterval + i, PASS_CODE_LENGTH, CRYPTO);
+			long hash = Totp.generateTOTP(decodedKey, currentInterval + i, PASS_CODE_LENGTH, CRYPTO);
 
 			if (hash == code) {
 				return true;

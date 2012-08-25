@@ -10,7 +10,7 @@ import java.security.GeneralSecurityException;
 
 import static org.junit.Assert.assertEquals;
 
-public class TOTPTest {
+public class TotpTest {
     private static final String CRYPTO = "HmacSHA1";
 
     @Test
@@ -24,7 +24,7 @@ public class TOTPTest {
     }
 
     private int generateRfcOTP(byte[] key) {
-        return TOTP.generateTOTP(key, getCurrentInterval(), 6, CRYPTO);
+        return Totp.generateTOTP(key, getCurrentInterval(), 6, CRYPTO);
     }
 
     private int generateGoogleOTP(byte[] key) {
