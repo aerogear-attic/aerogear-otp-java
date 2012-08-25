@@ -1,11 +1,9 @@
-package org.abstractj.cuckootp.totp;
+package org.abstractj.cuckootp.api.totp;
 
 import org.apache.commons.codec.binary.Base32;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-import java.util.Random;
 
 public class ValidationCode {
 

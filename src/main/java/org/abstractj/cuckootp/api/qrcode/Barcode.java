@@ -1,11 +1,9 @@
-package org.abstractj.cuckootp.qrcode;
+package org.abstractj.cuckootp.api.qrcode;
 
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 

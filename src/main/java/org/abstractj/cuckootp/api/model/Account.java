@@ -1,4 +1,4 @@
-package org.abstractj.cuckootp.model;
+package org.abstractj.cuckootp.api.model;
 
 import java.util.Date;
 

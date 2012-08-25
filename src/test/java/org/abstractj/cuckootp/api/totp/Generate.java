@@ -1,7 +1,7 @@
-package org.abstractj.cuckootp.totp;
+package org.abstractj.cuckootp.api.totp;
 
-import org.abstractj.cuckootp.model.Account;
-import org.abstractj.cuckootp.qrcode.Barcode;
+import org.abstractj.cuckootp.api.model.Account;
+import org.abstractj.cuckootp.api.qrcode.Barcode;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -15,7 +15,7 @@ public class Generate {
 
         Account account = new Account();
         account.setName("joe");
-        account.setSecret(ValidationCode.generateSecret());
+        account.setSecret(SecretKey.generate());
 
         String data = KeyUri.format(account.getName(), account.getSecret());
 

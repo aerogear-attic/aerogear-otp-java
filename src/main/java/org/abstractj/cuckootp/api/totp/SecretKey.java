@@ -1,4 +1,4 @@
-package org.abstractj.cuckootp.totp;
+package org.abstractj.cuckootp.api.totp;
 
 import org.apache.commons.codec.binary.Base32;
 

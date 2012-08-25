@@ -1,4 +1,4 @@
-package org.abstractj.cuckootp.qrcode;
+package org.abstractj.cuckootp.api.qrcode;
 
 import com.google.zxing.EncodeHintType;
 

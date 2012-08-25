@@ -1,4 +1,4 @@
-package org.abstractj.cuckootp.totp;
+package org.abstractj.cuckootp.api.totp;
 
 //Copyright (C) 2009 Google Inc.
 

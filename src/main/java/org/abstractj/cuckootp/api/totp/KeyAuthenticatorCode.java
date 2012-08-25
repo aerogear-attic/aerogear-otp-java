@@ -1,4 +1,4 @@
-package org.abstractj.cuckootp.totp;
+package org.abstractj.cuckootp.api.totp;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
