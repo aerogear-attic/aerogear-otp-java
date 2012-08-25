@@ -3,7 +3,7 @@ package org.abstractj.cuckootp.servlet;
 import org.abstractj.cuckootp.model.Account;
 import org.abstractj.cuckootp.qrcode.Barcode;
 import org.abstractj.cuckootp.totp.KeyUri;
-import org.abstractj.cuckootp.totp.TotpUtils;
+import org.abstractj.cuckootp.totp.SecretKey;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +24,7 @@ public class QRCodeServlet extends HttpServlet {
 
         Account account = new Account();
         account.setName("joe");
-        account.setSecret(TotpUtils.generateSecret());
+        account.setSecret(SecretKey.generate());
 
         String data = KeyUri.format(account.getName(), account.getSecret());
 
