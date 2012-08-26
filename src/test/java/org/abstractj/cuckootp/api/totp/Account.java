@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.abstractj.cuckootp.api.model;
+package org.abstractj.cuckootp.api.totp;
 
 import java.util.Date;
 
