@@ -10,7 +10,7 @@ public class HmacTest {
         String keyString = "3132333435363738393031323334353637383930";
         byte[] key = Hex.decodeHex(keyString.toCharArray());
 
-        System.out.println(new Totp(30).generate());
+        System.out.println(new Totp(new Secret(keyString), new Clock()).generate());
 
     }
 }
