@@ -20,7 +20,7 @@ import com.google.zxing.EncodeHintType;
 
 import java.util.Hashtable;
 
-public class Hints {
+public class Configuration {
 
     public static final String UTF_8 = "UTF-8";
 

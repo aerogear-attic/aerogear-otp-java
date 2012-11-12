@@ -36,7 +36,7 @@ public class Barcode {
         BitMatrix matrix = null;
         com.google.zxing.Writer writer = new MultiFormatWriter();
         try {
-            matrix = writer.encode(data, QR_CODE, QRCODE_WIDTH, QRCODE_HEIGHT, Hints.create());
+            matrix = writer.encode(data, QR_CODE, QRCODE_WIDTH, QRCODE_HEIGHT, Configuration.create());
             MatrixToImageWriter.writeToStream(matrix, IMAGE_FORMAT, outputStream);
         } catch (com.google.zxing.WriterException e) {
             e.printStackTrace();
