@@ -114,6 +114,7 @@ public class TotpTest {
     @Test
     public void testOtpHasExpired() throws Exception {
         String secret = base32.random();
+        System.out.println(secret);
         Totp totp = new Totp(secret, clock);
         int otp = totp.generate();
 //        when(clock.getCurrentInterval()).thenReturn(addInterval(40));

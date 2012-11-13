@@ -68,7 +68,7 @@ public class Totp {
 
 
         long currentInterval = new Clock().getCurrentInterval();
-        System.out.println("From verifier: " + clock.getCurrentInterval());
+//        System.out.println("From verifier: " + clock.getCurrentInterval());
         int expectedResponse = generate();
         if (expectedResponse == code) {
             return true;
