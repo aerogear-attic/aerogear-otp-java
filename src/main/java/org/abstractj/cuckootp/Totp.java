@@ -16,6 +16,7 @@ public class Totp {
     private Clock clock = new Clock();
     private static final int DELAY_WINDOW = 1;
 
+
     public Totp(String secret) {
         this.secret = secret;
     }
@@ -30,7 +31,7 @@ public class Totp {
         return String.format("otpauth://totp/%s?secret=%s", name, secret);
     }
 
-    public int now() {
+    public String now() {
 
         byte[] hash = new byte[0];
         try {
@@ -46,7 +47,7 @@ public class Totp {
 
         int binary = ((hash[offset] & 0x7f) << 24) | ((hash[offset + 1] & 0xff) << 16) | ((hash[offset + 2] & 0xff) << 8) | (hash[offset + 3] & 0xff);
 
-        return binary % Digits.SIX.getValue();
+        return Integer.valueOf(binary % Digits.SIX.getValue()).toString();
     }
 
     //TODO duplicated method, must be removed
