@@ -10,10 +10,10 @@ public class Hmac {
 
     public static final String ALGORITHM = "RAW";
     private Hash hash;
-    private Secret secret;
+    private byte[] secret;
     private long currentInterval;
 
-    public Hmac(Hash hash, Secret secret, long currentInterval) {
+    public Hmac(Hash hash, byte[] secret, long currentInterval) {
         this.hash = hash;
         this.secret = secret;
         this.currentInterval = currentInterval;
@@ -22,7 +22,7 @@ public class Hmac {
     public byte[] digest() throws NoSuchAlgorithmException, InvalidKeyException {
         byte[] challenge = ByteBuffer.allocate(8).putLong(currentInterval).array();
         Mac mac = Mac.getInstance(hash.toString());
-        SecretKeySpec macKey = new SecretKeySpec(secret.getBytes(), ALGORITHM);
+        SecretKeySpec macKey = new SecretKeySpec(secret, ALGORITHM);
         mac.init(macKey);
         return mac.doFinal(challenge);
     }
