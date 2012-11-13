@@ -9,6 +9,7 @@ import org.mockito.MockitoAnnotations;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
+import java.util.logging.Logger;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -19,12 +20,12 @@ public class TotpTest {
 
     @Mock
     private Base32 base32;
-
     @Mock
     private Clock clock;
-
     @InjectMocks
     private Totp totp;
+
+    private final static Logger LOGGER = Logger.getLogger(TotpTest.class.getName());
 
     private String sharedSecret = "B2374TNIQ3HKC446";
 
@@ -37,9 +38,9 @@ public class TotpTest {
 
     private long addInterval(int seconds) {
         Calendar calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("UTC"));
-        System.out.println("Current time: " + calendar.getTime());
+        LOGGER.info("Current time: " + calendar.getTime());
         calendar.add(Calendar.SECOND, seconds);
-        System.out.println("Updated time: " + calendar.getTime());
+        LOGGER.info("Updated time: " + calendar.getTime());
         long currentTimeSeconds = calendar.getTimeInMillis() / 1000;
         return currentTimeSeconds / 30;
     }
@@ -54,7 +55,9 @@ public class TotpTest {
 
     @Test
     public void testGenerate() throws Exception {
-        int otp = new Totp(base32.random()).generate();
+        String secret = base32.random();
+        Totp totp = new Totp(secret);
+        int otp = totp.generate();
         assertEquals(6, Integer.toString(otp).length());
     }
 

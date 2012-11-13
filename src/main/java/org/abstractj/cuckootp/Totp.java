@@ -28,7 +28,6 @@ public class Totp {
 
         byte[] hash = new byte[0];
         try {
-            System.out.println("Generate: " + clock.getCurrentInterval());
             hash = new Hmac(Hash.SHA1, base32.decode(secret), clock.getCurrentInterval()).digest();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
@@ -66,21 +65,23 @@ public class Totp {
 
         long currentInterval = clock.getCurrentInterval();
         int expectedResponse = generate(secret, currentInterval);
+
         if (expectedResponse == code) {
             return true;
         }
-        for (int i = 1; i <= DELAY_WINDOW; i++) {
-            int pastResponse = generate(secret, currentInterval - i);
-            if (pastResponse == code) {
-                return true;
-            }
+
+        int pastResponse = generate(secret, currentInterval - DELAY_WINDOW);
+
+        if (pastResponse == code) {
+            return true;
         }
-        for (int i = 1; i <= DELAY_WINDOW; i++) {
-            int futureResponse = generate(secret, currentInterval + i);
-            if (futureResponse == code) {
-                return true;
-            }
+
+        int futureResponse = generate(secret, currentInterval + DELAY_WINDOW);
+
+        if (futureResponse == code) {
+            return true;
         }
+
         return false;
     }
 
