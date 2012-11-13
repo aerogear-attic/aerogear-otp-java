@@ -27,9 +27,8 @@ public class Totp {
     }
 
     //TODO URI.encode
-    public String uri(){
-        //"otpauth://hotp/#{URI.encode(name)}?secret=#{secret}&counter=#{initial_count}";
-        return String.format("otpauth://totp/%s?secret=%s", "john", sharedSecret);
+    public String uri(String name){
+        return String.format("otpauth://totp/%s?secret=%s", name, sharedSecret);
     }
 
     public int generate() {

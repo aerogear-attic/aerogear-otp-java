@@ -1,15 +1,15 @@
 package org.abstractj.cuckootp;
 
+import java.security.SecureRandom;
 import java.util.Arrays;
-import java.util.Random;
 
 public class Base32 {
 
     private static final int SECRET_SIZE = 10;
 
-    private static final Random rand = new Random();
+    private static final SecureRandom rand = new SecureRandom();
 
-    public static String random() {
+    public String random() {
 
         // Allocating the buffer
         byte[] buffer = new byte[SECRET_SIZE];
@@ -24,7 +24,7 @@ public class Base32 {
         return new String(encodedKey);
     }
 
-    public static byte[] decode(String secret){
+    public byte[] decode(String secret) {
         org.apache.commons.codec.binary.Base32 codec = new org.apache.commons.codec.binary.Base32();
         return codec.decode(secret);
     }
