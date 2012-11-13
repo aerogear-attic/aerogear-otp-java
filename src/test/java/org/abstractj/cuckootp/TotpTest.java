@@ -57,7 +57,7 @@ public class TotpTest {
     public void testGenerate() throws Exception {
         String secret = base32.random();
         Totp totp = new Totp(secret);
-        int otp = totp.generate();
+        int otp = totp.now();
         assertEquals(6, Integer.toString(otp).length());
     }
 
@@ -65,13 +65,13 @@ public class TotpTest {
     public void testOtpIsValid() throws Exception {
         String secret = base32.random();
         Totp totp = new Totp(secret);
-        int otp = totp.generate();
+        int otp = totp.now();
         assertTrue("OTP is not valid", totp.verify(otp));
     }
 
     @Test
     public void testOtpIsValidAfter10seconds() throws Exception {
-        int otp = totp.generate();
+        int otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(10));
         totp = new Totp(base32.random(), clock);
         assertTrue("OTP should be valid", totp.verify(otp));
@@ -79,7 +79,7 @@ public class TotpTest {
 
     @Test
     public void testOtpIsValidAfter20seconds() throws Exception {
-        int otp = totp.generate();
+        int otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(20));
         totp = new Totp(base32.random(), clock);
         assertTrue("OTP should be valid", totp.verify(otp));
@@ -87,7 +87,7 @@ public class TotpTest {
 
     @Test
     public void testOtpIsValidAfter25seconds() throws Exception {
-        int otp = totp.generate();
+        int otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(25));
         totp = new Totp(base32.random(), clock);
         assertTrue("OTP should be valid", totp.verify(otp));
@@ -95,7 +95,7 @@ public class TotpTest {
 
     @Test
     public void testOtpIsValidAfter30seconds() throws Exception {
-        int otp = totp.generate();
+        int otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(30));
         totp = new Totp(base32.random(), clock);
         assertTrue("OTP should be valid", totp.verify(otp));
@@ -104,7 +104,7 @@ public class TotpTest {
     @Test
     public void testOtpHasElapsed40seconds() throws Exception {
         totp = new Totp(base32.random(), clock);
-        int otp = totp.generate();
+        int otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(40));
         totp = new Totp(base32.random(), clock);
         assertFalse("OTP should be invalid", totp.verify(otp));
@@ -113,7 +113,7 @@ public class TotpTest {
     @Test
     public void testOtpHasElapsed50seconds() throws Exception {
         totp = new Totp(base32.random(), clock);
-        int otp = totp.generate();
+        int otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(50));
         totp = new Totp(base32.random(), clock);
         assertFalse("OTP should be invalid", totp.verify(otp));

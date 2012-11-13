@@ -24,7 +24,7 @@ public class Totp {
         return String.format("otpauth://totp/%s?secret=%s", name, secret);
     }
 
-    public int generate() {
+    public int now() {
 
         byte[] hash = new byte[0];
         try {
@@ -43,6 +43,7 @@ public class Totp {
         return binary % Digits.SIX.getValue();
     }
 
+    //TODO duplicated method, must be removed
     public int generate(String secret, long interval) {
         byte[] hash = new byte[0];
         try {
