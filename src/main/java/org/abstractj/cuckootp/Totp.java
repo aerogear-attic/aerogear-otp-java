@@ -68,8 +68,9 @@ public class Totp {
         return binary % Digits.SIX.getValue();
     }
 
-    public boolean verify(long code) {
+    public boolean verify(String otp) {
 
+        long code = Long.parseLong(otp);
         long currentInterval = clock.getCurrentInterval();
         int expectedResponse = generate(secret, currentInterval);
 

@@ -68,7 +68,7 @@ public class TotpTest {
         String secret = base32.random();
         Totp totp = new Totp(secret);
         int otp = totp.now();
-        assertTrue("OTP is not valid", totp.verify(otp));
+        assertTrue("OTP is not valid", totp.verify(String.valueOf(otp)));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class TotpTest {
         int otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(10));
         totp = new Totp(base32.random(), clock);
-        assertTrue("OTP should be valid", totp.verify(otp));
+        assertTrue("OTP should be valid", totp.verify(String.valueOf(otp)));
     }
 
     @Test
@@ -84,7 +84,7 @@ public class TotpTest {
         int otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(20));
         totp = new Totp(base32.random(), clock);
-        assertTrue("OTP should be valid", totp.verify(otp));
+        assertTrue("OTP should be valid", totp.verify(String.valueOf(otp)));
     }
 
     @Test
@@ -92,7 +92,7 @@ public class TotpTest {
         int otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(25));
         totp = new Totp(base32.random(), clock);
-        assertTrue("OTP should be valid", totp.verify(otp));
+        assertTrue("OTP should be valid", totp.verify(String.valueOf(otp)));
     }
 
     @Test
@@ -100,7 +100,7 @@ public class TotpTest {
         int otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(30));
         totp = new Totp(base32.random(), clock);
-        assertTrue("OTP should be valid", totp.verify(otp));
+        assertTrue("OTP should be valid", totp.verify(String.valueOf(otp)));
     }
 
     @Test
@@ -109,7 +109,7 @@ public class TotpTest {
         int otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(40));
         totp = new Totp(base32.random(), clock);
-        assertFalse("OTP should be invalid", totp.verify(otp));
+        assertFalse("OTP should be invalid", totp.verify(String.valueOf(otp)));
     }
 
     @Test
@@ -118,6 +118,6 @@ public class TotpTest {
         int otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(50));
         totp = new Totp(base32.random(), clock);
-        assertFalse("OTP should be invalid", totp.verify(otp));
+        assertFalse("OTP should be invalid", totp.verify(String.valueOf(otp)));
     }
 }
