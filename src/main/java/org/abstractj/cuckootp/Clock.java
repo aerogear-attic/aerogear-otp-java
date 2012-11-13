@@ -1,5 +1,9 @@
 package org.abstractj.cuckootp;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
+
 public class Clock {
 
     private int interval = 30;
@@ -11,8 +15,8 @@ public class Clock {
     }
 
     public long getCurrentInterval() {
-        System.out.println("My millis: " + System.currentTimeMillis());
-        long currentTimeSeconds = System.currentTimeMillis() / 1000;
+        Calendar calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("UTC"));
+        long currentTimeSeconds = calendar.getTimeInMillis() / 1000;
         return currentTimeSeconds / interval;
     }
 }
