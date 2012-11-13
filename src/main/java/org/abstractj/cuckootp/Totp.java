@@ -11,13 +11,25 @@ public class Totp {
     private Secret secret;
 
     private static final int WINDOW = 30;
+    private String sharedSecret;
 
-    public Totp() {
+    public Totp(String sharedSecret) {
+        this.sharedSecret = sharedSecret;
+    }
+
+    public Totp(Secret secret) {
+        this.secret = secret;
     }
 
     public Totp(Secret secret, Clock clock) {
         this.clock = clock;
         this.secret = secret;
+    }
+
+    //TODO URI.encode
+    public String uri(){
+        //"otpauth://hotp/#{URI.encode(name)}?secret=#{secret}&counter=#{initial_count}";
+        return String.format("otpauth://totp/%s?secret=%s", "john", sharedSecret);
     }
 
     public int generate() {

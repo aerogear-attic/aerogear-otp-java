@@ -20,4 +20,5 @@ public class Secret {
         }
         return decodedKey;
     }
+
 }
