@@ -14,6 +14,11 @@ public class Totp {
         this.secret = secret;
     }
 
+    public Totp(String secret, Clock clock) {
+        this.secret = secret;
+        this.clock = clock;
+    }
+
     //TODO URI.encode
     public String uri(String name) {
         return String.format("otpauth://totp/%s?secret=%s", name, secret);
@@ -23,6 +28,7 @@ public class Totp {
 
         byte[] hash = new byte[0];
         try {
+            System.out.println("Generate: " + clock.getCurrentInterval());
             hash = new Hmac(Hash.SHA1, base32.decode(secret), clock.getCurrentInterval()).digest();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
@@ -58,9 +64,8 @@ public class Totp {
 
     public boolean verify(long code) {
 
-
         long currentInterval = clock.getCurrentInterval();
-        int expectedResponse = generate();
+        int expectedResponse = generate(secret, currentInterval);
         if (expectedResponse == code) {
             return true;
         }

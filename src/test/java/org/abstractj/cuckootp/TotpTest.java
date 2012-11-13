@@ -2,6 +2,7 @@ package org.abstractj.cuckootp;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -22,28 +23,23 @@ public class TotpTest {
     @Mock
     private Clock clock;
 
+    @InjectMocks
+    private Totp totp;
+
     private String sharedSecret = "B2374TNIQ3HKC446";
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         when(base32.random()).thenReturn(sharedSecret);
-        when(clock.getCurrentInterval()).thenReturn(buildInterval());
-    }
-
-    private long buildInterval() {
-        Calendar calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("UTC"));
-        System.out.println("buildInterval - Current time: " + calendar.getTime());
-        long currentTimeSeconds = calendar.getTimeInMillis() / 1000;
-        return currentTimeSeconds / 30;
+        totp = new Totp(base32.random(), new Clock());
     }
 
     private long addInterval(int seconds) {
         Calendar calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("UTC"));
-        System.out.println("addInterval - Current time: " + calendar.getTime());
+        System.out.println("Current time: " + calendar.getTime());
         calendar.add(Calendar.SECOND, seconds);
-        System.out.println("addInterval - Updated time: " + calendar.getTime());
-        System.out.println("Calendar: " + calendar.getTimeInMillis());
+        System.out.println("Updated time: " + calendar.getTime());
         long currentTimeSeconds = calendar.getTimeInMillis() / 1000;
         return currentTimeSeconds / 30;
     }
@@ -72,65 +68,51 @@ public class TotpTest {
 
     @Test
     public void testOtpIsValidAfter10seconds() throws Exception {
-        String secret = base32.random();
-        Totp totp = new Totp(secret);
         int otp = totp.generate();
         when(clock.getCurrentInterval()).thenReturn(addInterval(10));
-        totp = new Totp(secret);
-        assertTrue("OTP is not valid", totp.verify(otp));
+        totp = new Totp(base32.random(), clock);
+        assertTrue("OTP should be valid", totp.verify(otp));
     }
 
     @Test
     public void testOtpIsValidAfter20seconds() throws Exception {
-        String secret = base32.random();
-        Totp totp = new Totp(secret);
         int otp = totp.generate();
         when(clock.getCurrentInterval()).thenReturn(addInterval(20));
-        totp = new Totp(secret);
-        assertTrue("OTP is not valid", totp.verify(otp));
+        totp = new Totp(base32.random(), clock);
+        assertTrue("OTP should be valid", totp.verify(otp));
     }
 
     @Test
     public void testOtpIsValidAfter25seconds() throws Exception {
-        String secret = base32.random();
-        Totp totp = new Totp(secret);
         int otp = totp.generate();
-//        when(clock.getCurrentInterval()).thenReturn(addInterval(25));
-//        totp = new Totp(secret, clock);
-        Thread.sleep(20000L);
-        assertTrue("OTP is not valid", totp.verify(otp));
+        when(clock.getCurrentInterval()).thenReturn(addInterval(25));
+        totp = new Totp(base32.random(), clock);
+        assertTrue("OTP should be valid", totp.verify(otp));
     }
 
     @Test
     public void testOtpIsValidAfter30seconds() throws Exception {
-        String secret = base32.random();
-        Totp totp = new Totp(secret);
         int otp = totp.generate();
-//        when(clock.getCurrentInterval()).thenReturn(addInterval(30));
-//        totp = new Totp(secret, clock);
-        Thread.sleep(30000L);
-        assertTrue("OTP is not valid", totp.verify(otp));
+        when(clock.getCurrentInterval()).thenReturn(addInterval(30));
+        totp = new Totp(base32.random(), clock);
+        assertTrue("OTP should be valid", totp.verify(otp));
     }
 
     @Test
     public void testOtpHasElapsed40seconds() throws Exception {
-        String secret = base32.random();
-        Totp totp = new Totp(secret);
+        totp = new Totp(base32.random(), clock);
         int otp = totp.generate();
-//        when(clock.getCurrentInterval()).thenReturn(addInterval(40));
-//        totp = new Totp(secret, clock);
-        Thread.sleep(40000L);
+        when(clock.getCurrentInterval()).thenReturn(addInterval(40));
+        totp = new Totp(base32.random(), clock);
         assertFalse("OTP should be invalid", totp.verify(otp));
     }
 
     @Test
     public void testOtpHasElapsed50seconds() throws Exception {
-        String secret = base32.random();
-        Totp totp = new Totp(secret);
+        totp = new Totp(base32.random(), clock);
         int otp = totp.generate();
-//        when(clock.getCurrentInterval()).thenReturn(addInterval(40));
-//        totp = new Totp(secret, clock);
-        Thread.sleep(50000L);
+        when(clock.getCurrentInterval()).thenReturn(addInterval(50));
+        totp = new Totp(base32.random(), clock);
         assertFalse("OTP should be invalid", totp.verify(otp));
     }
 }
