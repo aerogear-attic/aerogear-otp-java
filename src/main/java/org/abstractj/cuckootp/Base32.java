@@ -23,4 +23,9 @@ public class Base32 {
         byte[] encodedKey = codec.encode(secretKey);
         return new String(encodedKey);
     }
+
+    public static byte[] decode(String secret){
+        org.apache.commons.codec.binary.Base32 codec = new org.apache.commons.codec.binary.Base32();
+        return codec.decode(secret);
+    }
 }
