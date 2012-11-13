@@ -56,7 +56,7 @@ public class TotpTest {
     }
 
     @Test
-    public void testGenerate() throws Exception {
+    public void testNow() throws Exception {
         String secret = base32.random();
         Totp totp = new Totp(secret);
         int otp = totp.now();
@@ -64,7 +64,7 @@ public class TotpTest {
     }
 
     @Test
-    public void testOtpIsValid() throws Exception {
+    public void testValidOtp() throws Exception {
         String secret = base32.random();
         Totp totp = new Totp(secret);
         int otp = totp.now();
@@ -72,7 +72,7 @@ public class TotpTest {
     }
 
     @Test
-    public void testOtpIsValidAfter10seconds() throws Exception {
+    public void testOtpAfter10seconds() throws Exception {
         int otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(10));
         totp = new Totp(base32.random(), clock);
@@ -80,7 +80,7 @@ public class TotpTest {
     }
 
     @Test
-    public void testOtpIsValidAfter20seconds() throws Exception {
+    public void testOtpAfter20seconds() throws Exception {
         int otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(20));
         totp = new Totp(base32.random(), clock);
@@ -88,7 +88,7 @@ public class TotpTest {
     }
 
     @Test
-    public void testOtpIsValidAfter25seconds() throws Exception {
+    public void testOtpAfter25seconds() throws Exception {
         int otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(25));
         totp = new Totp(base32.random(), clock);
@@ -96,7 +96,7 @@ public class TotpTest {
     }
 
     @Test
-    public void testOtpIsValidAfter30seconds() throws Exception {
+    public void testOtpAfter30seconds() throws Exception {
         int otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(30));
         totp = new Totp(base32.random(), clock);
@@ -104,7 +104,7 @@ public class TotpTest {
     }
 
     @Test
-    public void testOtpHasElapsed40seconds() throws Exception {
+    public void testOtpAfter40seconds() throws Exception {
         totp = new Totp(base32.random(), clock);
         int otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(40));
@@ -113,7 +113,7 @@ public class TotpTest {
     }
 
     @Test
-    public void testOtpHasElapsed50seconds() throws Exception {
+    public void testOtpAfter50seconds() throws Exception {
         totp = new Totp(base32.random(), clock);
         int otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(50));
