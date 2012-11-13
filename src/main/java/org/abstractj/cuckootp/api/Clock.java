@@ -1,4 +1,4 @@
-package org.abstractj.cuckootp;
+package org.abstractj.cuckootp.api;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;

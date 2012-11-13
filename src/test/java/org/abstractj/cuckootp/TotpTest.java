@@ -1,5 +1,7 @@
 package org.abstractj.cuckootp;
 
+import org.abstractj.cuckootp.api.Base32;
+import org.abstractj.cuckootp.api.Clock;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;

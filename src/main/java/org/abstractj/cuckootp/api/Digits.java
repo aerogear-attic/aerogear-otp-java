@@ -1,4 +1,4 @@
-package org.abstractj.cuckootp;
+package org.abstractj.cuckootp.api;
 
 public enum Digits {
     SIX(1000000), SEVEN(10000000), EIGHT(100000000);

@@ -1,5 +1,6 @@
-package org.abstractj.cuckootp;
+package org.abstractj.cuckootp.api;
 
+import org.abstractj.cuckootp.api.Base32;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
