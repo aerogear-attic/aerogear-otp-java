@@ -9,6 +9,8 @@ public class Totp {
 
     private String secret;
     private Base32 base32 = new Base32();
+    private static final int DELAY_WINDOW = 10;
+    private static final int WINDOW = 1;
 
     public Totp(String secret) {
         this.secret = secret;
@@ -28,7 +30,7 @@ public class Totp {
 
         byte[] hash = new byte[0];
         try {
-            hash = new Hmac(Hash.SHA1, base32.decode(secret), clock.getCurrentInterval()).digest();
+            hash = new Hmac(Hash.SHA1, base32.decode(secret), new Clock().getCurrentInterval()).digest();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (InvalidKeyException e) {
@@ -46,6 +48,7 @@ public class Totp {
     public int generate(String secret, long interval) {
         byte[] hash = new byte[0];
         try {
+            System.out.println("From prover: " + new Clock().getCurrentInterval());
             hash = new Hmac(Hash.SHA1, base32.decode(secret), interval).digest();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
@@ -64,16 +67,24 @@ public class Totp {
     public boolean verify(long code) {
 
 
-//        int window = DELAY_WINDOW;
-
-//        for (int i = -window; i <= window; ++i) {
-            long hash = generate(secret, clock.getCurrentInterval());
-
-            if (hash == code) {
+        long currentInterval = new Clock().getCurrentInterval();
+        System.out.println("From verifier: " + clock.getCurrentInterval());
+        int expectedResponse = generate();
+        if (expectedResponse == code) {
+            return true;
+        }
+        for (int i = 1; i <= WINDOW; i++) {
+            int pastResponse = generate(secret, currentInterval - i);
+            if (pastResponse == code) {
                 return true;
             }
-//        }
-
+        }
+        for (int i = 1; i <= WINDOW; i++) {
+            int futureResponse = generate(secret, currentInterval + i);
+            if (futureResponse ==  code) {
+                return true;
+            }
+        }
         return false;
     }
 }

@@ -11,6 +11,7 @@ public class Clock {
     }
 
     public long getCurrentInterval() {
+        System.out.println("My millis: " + System.currentTimeMillis());
         long currentTimeSeconds = System.currentTimeMillis() / 1000;
         return currentTimeSeconds / interval;
     }

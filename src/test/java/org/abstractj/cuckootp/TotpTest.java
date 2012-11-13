@@ -28,14 +28,24 @@ public class TotpTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         when(base32.random()).thenReturn(sharedSecret);
+        when(clock.getCurrentInterval()).thenReturn(buildInterval());
     }
 
-    private long buildTime(int seconds){
+    private long buildInterval(){
+        Calendar calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("UTC"));
+        System.out.println("buildInterval - Current time: " + calendar.getTime());
+        long currentTimeSeconds = calendar.getTimeInMillis() / 1000;
+        return currentTimeSeconds / 30;
+    }
+
+    private long addInterval(int seconds){
         Calendar calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("Brazil/East"));
-        System.out.println("Current time: " + calendar.getTime());
+        System.out.println("addInterval - Current time: " + calendar.getTime());
         calendar.add(Calendar.SECOND, seconds);
-        System.out.println("Updated time: " + calendar.getTime());
-        return calendar.getTimeInMillis();
+        System.out.println("addInterval - Updated time: " + calendar.getTime());
+        System.out.println("Calendar: " + calendar.getTimeInMillis());
+        long currentTimeSeconds = calendar.getTimeInMillis() / 1000;
+        return currentTimeSeconds / 30;
     }
 
     @Test
@@ -62,9 +72,9 @@ public class TotpTest {
     @Test
     public void testOtpIsValidAfter10seconds() throws Exception {
         String secret = base32.random();
-        Totp totp = new Totp(secret, new Clock());
+        Totp totp = new Totp(secret, clock);
         int otp = totp.generate();
-        when(clock.getCurrentInterval()).thenReturn(buildTime(10));
+        when(clock.getCurrentInterval()).thenReturn(addInterval(10));
         totp = new Totp(secret, clock);
         assertTrue("OTP is not valid", totp.verify(otp));
     }
@@ -72,9 +82,9 @@ public class TotpTest {
     @Test
     public void testOtpIsValidAfter20seconds() throws Exception {
         String secret = base32.random();
-        Totp totp = new Totp(secret, new Clock());
+        Totp totp = new Totp(secret, clock);
         int otp = totp.generate();
-        when(clock.getCurrentInterval()).thenReturn(buildTime(20));
+        when(clock.getCurrentInterval()).thenReturn(addInterval(20));
         totp = new Totp(secret, clock);
         assertTrue("OTP is not valid", totp.verify(otp));
     }
@@ -82,10 +92,11 @@ public class TotpTest {
     @Test
     public void testOtpIsValidAfter25seconds() throws Exception {
         String secret = base32.random();
-        Totp totp = new Totp(secret, new Clock());
+        Totp totp = new Totp(secret, clock);
         int otp = totp.generate();
-        when(clock.getCurrentInterval()).thenReturn(buildTime(25));
-        totp = new Totp(secret, clock);
+//        when(clock.getCurrentInterval()).thenReturn(addInterval(25));
+//        totp = new Totp(secret, clock);
+        Thread.sleep(20000L);
         assertTrue("OTP is not valid", totp.verify(otp));
     }
 
@@ -94,18 +105,20 @@ public class TotpTest {
         String secret = base32.random();
         Totp totp = new Totp(secret, new Clock());
         int otp = totp.generate();
-        when(clock.getCurrentInterval()).thenReturn(buildTime(30));
-        totp = new Totp(secret, clock);
+//        when(clock.getCurrentInterval()).thenReturn(addInterval(30));
+//        totp = new Totp(secret, clock);
+        Thread.sleep(30000L);
         assertTrue("OTP is not valid", totp.verify(otp));
     }
 
     @Test
     public void testOtpHasExpired() throws Exception {
         String secret = base32.random();
-        Totp totp = new Totp(secret, new Clock());
+        Totp totp = new Totp(secret, clock);
         int otp = totp.generate();
-        when(clock.getCurrentInterval()).thenReturn(buildTime(40));
-        totp = new Totp(secret, clock);
+//        when(clock.getCurrentInterval()).thenReturn(addInterval(40));
+//        totp = new Totp(secret, clock);
+        Thread.sleep(40000L);
         assertFalse("OTP should be invalid", totp.verify(otp));
     }
 }
