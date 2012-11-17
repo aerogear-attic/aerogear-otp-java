@@ -88,24 +88,16 @@ public class Totp {
 
         long code = Long.parseLong(otp);
         long currentInterval = clock.getCurrentInterval();
-        int expectedResponse = generate(secret, currentInterval);
 
-        if (expectedResponse == code) {
-            return true;
+        int pastResponse = Math.max(DELAY_WINDOW, 0);
+        int futureResponse = Math.max(DELAY_WINDOW, 0);
+
+        for (int i = -pastResponse; i <= futureResponse; ++i) {
+            int secret = generate(this.secret, currentInterval - i);
+            if (secret == code) {
+                return true;
+            }
         }
-
-        int pastResponse = generate(secret, currentInterval - DELAY_WINDOW);
-
-        if (pastResponse == code) {
-            return true;
-        }
-
-        int futureResponse = generate(secret, currentInterval + DELAY_WINDOW);
-
-        if (futureResponse == code) {
-            return true;
-        }
-
         return false;
     }
 

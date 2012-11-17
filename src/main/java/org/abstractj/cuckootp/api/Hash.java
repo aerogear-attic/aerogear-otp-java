@@ -18,7 +18,7 @@ package org.abstractj.cuckootp.api;
 
 public enum Hash {
 
-    SHA1("HmacSHA1");
+    SHA1("HMACSHA1");
 
     private String hash;
 
