@@ -58,12 +58,7 @@ public class Totp {
             e.printStackTrace();
         }
 
-        // put selected bytes into result int
-        int offset = hash[hash.length - 1] & 0xf;
-
-        int binary = ((hash[offset] & 0x7f) << 24) | ((hash[offset + 1] & 0xff) << 16) | ((hash[offset + 2] & 0xff) << 8) | (hash[offset + 3] & 0xff);
-
-        return Integer.valueOf(binary % Digits.SIX.getValue()).toString();
+        return bytesToInt(hash).toString();
     }
 
     //TODO duplicated method, must be removed
@@ -77,6 +72,10 @@ public class Totp {
             e.printStackTrace();
         }
 
+        return bytesToInt(hash);
+    }
+
+    private Integer bytesToInt(byte[] hash) {
         // put selected bytes into result int
         int offset = hash[hash.length - 1] & 0xf;
 
