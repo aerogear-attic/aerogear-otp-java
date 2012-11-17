@@ -28,7 +28,6 @@ import java.security.NoSuchAlgorithmException;
 public class Totp {
 
     private String secret;
-    private Base32 base32 = new Base32();
     private Clock clock = new Clock();
     private static final int DELAY_WINDOW = 1;
 
@@ -51,10 +50,12 @@ public class Totp {
 
         byte[] hash = new byte[0];
         try {
-            hash = new Hmac(Hash.SHA1, base32.decode(secret), clock.getCurrentInterval()).digest();
+            hash = new Hmac(Hash.SHA1, Base32.decode(secret), clock.getCurrentInterval()).digest();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (Base32.DecodingException e) {
             e.printStackTrace();
         }
 
@@ -65,10 +66,12 @@ public class Totp {
     public int generate(String secret, long interval) {
         byte[] hash = new byte[0];
         try {
-            hash = new Hmac(Hash.SHA1, base32.decode(secret), interval).digest();
+            hash = new Hmac(Hash.SHA1, Base32.decode(secret), interval).digest();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (Base32.DecodingException e) {
             e.printStackTrace();
         }
 

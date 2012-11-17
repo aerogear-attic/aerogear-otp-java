@@ -16,7 +16,6 @@
 
 package org.abstractj.cuckootp;
 
-import org.abstractj.cuckootp.api.Base32;
 import org.abstractj.cuckootp.api.Clock;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,8 +36,6 @@ import static org.mockito.Mockito.when;
 public class TotpTest {
 
     @Mock
-    private Base32 base32;
-    @Mock
     private Clock clock;
     @InjectMocks
     private Totp totp;
@@ -50,8 +47,7 @@ public class TotpTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        when(base32.random()).thenReturn(sharedSecret);
-        totp = new Totp(base32.random(), new Clock());
+        totp = new Totp(sharedSecret, new Clock());
     }
 
     private long addInterval(int seconds) {
@@ -65,7 +61,7 @@ public class TotpTest {
 
     @Test
     public void testUri() throws Exception {
-        Totp totp = new Totp(base32.random());
+        Totp totp = new Totp(sharedSecret);
         String name = "john";
         String url = String.format("otpauth://totp/%s?secret=%s", name, sharedSecret);
         assertEquals(url, totp.uri("john"));
@@ -73,16 +69,14 @@ public class TotpTest {
 
     @Test
     public void testNow() throws Exception {
-        String secret = base32.random();
-        Totp totp = new Totp(secret);
+        Totp totp = new Totp(sharedSecret);
         String otp = totp.now();
         assertEquals(6, otp.length());
     }
 
     @Test
     public void testValidOtp() throws Exception {
-        String secret = base32.random();
-        Totp totp = new Totp(secret);
+        Totp totp = new Totp(sharedSecret);
         String otp = totp.now();
         assertTrue("OTP is not valid", totp.verify(otp));
     }
@@ -91,7 +85,7 @@ public class TotpTest {
     public void testOtpAfter10seconds() throws Exception {
         String otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(10));
-        totp = new Totp(base32.random(), clock);
+        totp = new Totp(sharedSecret, clock);
         assertTrue("OTP should be valid", totp.verify(otp));
     }
 
@@ -99,7 +93,7 @@ public class TotpTest {
     public void testOtpAfter20seconds() throws Exception {
         String otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(20));
-        totp = new Totp(base32.random(), clock);
+        totp = new Totp(sharedSecret, clock);
         assertTrue("OTP should be valid", totp.verify(otp));
     }
 
@@ -107,7 +101,7 @@ public class TotpTest {
     public void testOtpAfter25seconds() throws Exception {
         String otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(25));
-        totp = new Totp(base32.random(), clock);
+        totp = new Totp(sharedSecret, clock);
         assertTrue("OTP should be valid", totp.verify(otp));
     }
 
@@ -115,25 +109,25 @@ public class TotpTest {
     public void testOtpAfter30seconds() throws Exception {
         String otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(30));
-        totp = new Totp(base32.random(), clock);
+        totp = new Totp(sharedSecret, clock);
         assertTrue("OTP should be valid", totp.verify(otp));
     }
 
     @Test
     public void testOtpAfter40seconds() throws Exception {
-        totp = new Totp(base32.random(), clock);
+        totp = new Totp(sharedSecret, clock);
         String otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(40));
-        totp = new Totp(base32.random(), clock);
+        totp = new Totp(sharedSecret, clock);
         assertFalse("OTP should be invalid", totp.verify(otp));
     }
 
     @Test
     public void testOtpAfter50seconds() throws Exception {
-        totp = new Totp(base32.random(), clock);
+        totp = new Totp(sharedSecret, clock);
         String otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addInterval(50));
-        totp = new Totp(base32.random(), clock);
+        totp = new Totp(sharedSecret, clock);
         assertFalse("OTP should be invalid", totp.verify(otp));
     }
 }
