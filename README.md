@@ -1,4 +1,4 @@
-# cuckootp - Java One Time Password API
+# aerogear-security-otp - Java One Time Password API
 
 A Java library for generating one time passwords according to [RFC 4226.](http://tools.ietf.org/html/rfc4226).
 
@@ -6,7 +6,7 @@ This is compatible with Google Authenticator apps available for [Android](https:
 
 ## Installation
 
-	git clone https://bitbucket.org/abstractj/cuckootp.git && mvn clean install
+	git clone https://github.com/aerogear/aerogear-security-otp.git && mvn clean install
 
 ## how to create a new project
 
@@ -15,8 +15,8 @@ This is compatible with Google Authenticator apps available for [Android](https:
 1. add the maven dependency
 
         <dependency>
-            <groupId>org.abstractj.cuckootp</groupId>
-            <artifactId>cuckootp</artifactId>
+            <groupId>org.jboss.aerogear</groupId>
+            <artifactId>aerogear-security-otp</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
@@ -38,7 +38,7 @@ This is compatible with Google Authenticator apps available for [Android](https:
 
 ## Working example
 
-1. Go to [http://cuckootp-abstractj.rhcloud.com/aerogear-controller-demo/login](http://cuckootp-abstractj.rhcloud.com/aerogear-controller-demo/login)
+1. Go to [https://cuckootp-abstractj.rhcloud.com/aerogear-controller-demo/login](https://cuckootp-abstractj.rhcloud.com/aerogear-controller-demo/login)
 2. Login with *username: john* and *password: 123*
 3. Now open google authenticator application at your phone
 4. Go to *Add account*
