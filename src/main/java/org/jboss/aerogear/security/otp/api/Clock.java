@@ -23,9 +23,11 @@ import java.util.TimeZone;
 
 public class Clock {
 
-    private int interval = 30;
+    private final int interval;
 
-    public Clock(){}
+    public Clock() {
+        interval = 30;
+    }
 
     public Clock(int interval) {
         this.interval = interval;
