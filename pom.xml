@@ -22,7 +22,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.jboss.aerogear</groupId>
-    <artifactId>aerogear-security-otp</artifactId>
+    <artifactId>aerogear-otp-java</artifactId>
     <version>1.0.0.M1-20121116</version>
     <packaging>jar</packaging>
 

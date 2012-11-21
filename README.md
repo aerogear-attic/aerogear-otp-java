@@ -1,4 +1,4 @@
-# aerogear-security-otp - Java One Time Password API
+# aerogear-otp-java - Java One Time Password API
 
 A Java library for generating one time passwords according to [RFC 4226.](http://tools.ietf.org/html/rfc4226).
 
@@ -16,7 +16,7 @@ This is compatible with Google Authenticator apps available for [Android](https:
 
         <dependency>
             <groupId>org.jboss.aerogear</groupId>
-            <artifactId>aerogear-security-otp</artifactId>
+            <artifactId>aerogear-otp-java</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
