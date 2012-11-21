@@ -26,9 +26,9 @@ import java.security.NoSuchAlgorithmException;
 public class Hmac {
 
     public static final String ALGORITHM = "RAW";
-    private Hash hash;
-    private byte[] secret;
-    private long currentInterval;
+    private final Hash hash;
+    private final byte[] secret;
+    private final long currentInterval;
 
     public Hmac(Hash hash, byte[] secret, long currentInterval) {
         this.hash = hash;

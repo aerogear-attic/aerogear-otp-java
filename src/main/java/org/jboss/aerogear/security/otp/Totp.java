@@ -29,12 +29,12 @@ import java.security.NoSuchAlgorithmException;
 public class Totp {
 
     private final String secret;
-    private Clock clock = new Clock();
+    private final Clock clock;
     private static final int DELAY_WINDOW = 1;
-
 
     public Totp(String secret) {
         this.secret = secret;
+        clock = new Clock();
     }
 
     public Totp(String secret, Clock clock) {
