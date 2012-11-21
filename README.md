@@ -6,7 +6,7 @@ This is compatible with Google Authenticator apps available for [Android](https:
 
 ## Installation
 
-	git clone https://github.com/aerogear/aerogear-security-otp.git && mvn clean install
+	git clone https://github.com/aerogear/aerogear-otp-java.git && mvn clean install
 
 ## how to create a new project
 
