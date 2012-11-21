@@ -28,7 +28,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class Totp {
 
-    private String secret;
+    private final String secret;
     private Clock clock = new Clock();
     private static final int DELAY_WINDOW = 1;
 
