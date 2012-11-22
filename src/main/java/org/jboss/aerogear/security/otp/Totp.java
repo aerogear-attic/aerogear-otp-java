@@ -48,23 +48,14 @@ public class Totp {
     }
 
     public String now() {
-
-        byte[] hash = new byte[0];
-        try {
-            hash = new Hmac(Hash.SHA1, Base32.decode(secret), clock.getCurrentInterval()).digest();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (Base32.DecodingException e) {
-            e.printStackTrace();
-        }
-
-        return bytesToInt(hash).toString();
+        return Integer.toString(hash(secret, clock.getCurrentInterval()));
     }
-
-    //TODO duplicated method, must be removed
+    
     public int generate(String secret, long interval) {
+        return hash(secret, interval);
+    }
+    
+    private int hash(String secret, long interval) {
         byte[] hash = new byte[0];
         try {
             hash = new Hmac(Hash.SHA1, Base32.decode(secret), interval).digest();
@@ -75,11 +66,10 @@ public class Totp {
         } catch (Base32.DecodingException e) {
             e.printStackTrace();
         }
-
         return bytesToInt(hash);
     }
 
-    private Integer bytesToInt(byte[] hash) {
+    private int bytesToInt(byte[] hash) {
         // put selected bytes into result int
         int offset = hash[hash.length - 1] & 0xf;
 
