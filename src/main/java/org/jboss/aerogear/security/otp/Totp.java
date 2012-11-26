@@ -23,6 +23,8 @@ import org.jboss.aerogear.security.otp.api.Digits;
 import org.jboss.aerogear.security.otp.api.Hash;
 import org.jboss.aerogear.security.otp.api.Hmac;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
@@ -42,9 +44,12 @@ public class Totp {
         this.clock = clock;
     }
 
-    //TODO URI.encode
     public String uri(String name) {
-        return String.format("otpauth://totp/%s?secret=%s", name, secret);
+        try {
+            return String.format("otpauth://totp/%s?secret=%s", URLEncoder.encode(name, "UTF-8"), secret);
+        } catch (UnsupportedEncodingException e) {
+            throw new IllegalArgumentException(e.getMessage(), e);
+        }
     }
 
     public String now() {
@@ -94,5 +99,4 @@ public class Totp {
         }
         return false;
     }
-
 }
