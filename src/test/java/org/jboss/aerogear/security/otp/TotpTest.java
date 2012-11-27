@@ -51,7 +51,7 @@ public class TotpTest {
         totp = new Totp(sharedSecret, new Clock());
     }
 
-    private long addInterval(int seconds) {
+    private long addElapsedTime(int seconds) {
         Calendar calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("UTC"));
         LOGGER.info("Current time: " + calendar.getTime());
         calendar.add(Calendar.SECOND, seconds);
@@ -85,7 +85,7 @@ public class TotpTest {
     @Test
     public void testOtpAfter10seconds() throws Exception {
         String otp = totp.now();
-        when(clock.getCurrentInterval()).thenReturn(addInterval(10));
+        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(10));
         totp = new Totp(sharedSecret, clock);
         assertTrue("OTP should be valid", totp.verify(otp));
     }
@@ -93,7 +93,7 @@ public class TotpTest {
     @Test
     public void testOtpAfter20seconds() throws Exception {
         String otp = totp.now();
-        when(clock.getCurrentInterval()).thenReturn(addInterval(20));
+        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(20));
         totp = new Totp(sharedSecret, clock);
         assertTrue("OTP should be valid", totp.verify(otp));
     }
@@ -101,7 +101,7 @@ public class TotpTest {
     @Test
     public void testOtpAfter25seconds() throws Exception {
         String otp = totp.now();
-        when(clock.getCurrentInterval()).thenReturn(addInterval(25));
+        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(25));
         totp = new Totp(sharedSecret, clock);
         assertTrue("OTP should be valid", totp.verify(otp));
     }
@@ -109,7 +109,7 @@ public class TotpTest {
     @Test
     public void testOtpAfter30seconds() throws Exception {
         String otp = totp.now();
-        when(clock.getCurrentInterval()).thenReturn(addInterval(30));
+        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(30));
         totp = new Totp(sharedSecret, clock);
         assertTrue("OTP should be valid", totp.verify(otp));
     }
@@ -118,7 +118,7 @@ public class TotpTest {
     public void testOtpAfter40seconds() throws Exception {
         totp = new Totp(sharedSecret, clock);
         String otp = totp.now();
-        when(clock.getCurrentInterval()).thenReturn(addInterval(40));
+        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(40));
         totp = new Totp(sharedSecret, clock);
         assertFalse("OTP should be invalid", totp.verify(otp));
     }
@@ -127,7 +127,7 @@ public class TotpTest {
     public void testOtpAfter50seconds() throws Exception {
         totp = new Totp(sharedSecret, clock);
         String otp = totp.now();
-        when(clock.getCurrentInterval()).thenReturn(addInterval(50));
+        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(50));
         totp = new Totp(sharedSecret, clock);
         assertFalse("OTP should be invalid", totp.verify(otp));
     }
