@@ -69,6 +69,13 @@ public class TotpTest {
     }
 
     @Test
+    public void testUriEncoding() {
+        Totp totp = new Totp(sharedSecret);
+        String url = String.format("otpauth://totp/%s?secret=%s", "john%23doe", sharedSecret);
+        assertEquals(url, totp.uri("john#doe"));
+    }
+    
+    @Test
     public void testNow() throws Exception {
         Totp totp = new Totp(sharedSecret);
         String otp = totp.now();
