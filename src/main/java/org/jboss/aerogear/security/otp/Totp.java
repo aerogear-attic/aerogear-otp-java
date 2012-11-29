@@ -83,6 +83,19 @@ public class Totp {
         return binary % Digits.SIX.getValue();
     }
 
+    /**
+     * Taken from Google Authenticator with small modifications from
+     * {@see <a href="http://code.google.com/p/google-authenticator/source/browse/src/com/google/android/apps/authenticator/PasscodeGenerator.java?repo=android#212">PasscodeGenerator.java</a>}
+     *
+     * Verify a timeout code. The timeout code will be valid for a time
+     * determined by the interval period and the number of adjacent intervals
+     * checked.
+     *
+     * @param otp Timeout code
+     * @return True if the timeout code is valid
+     *
+     * @author sweis@google.com (Steve Weis)
+     */
     public boolean verify(String otp) {
 
         long code = Long.parseLong(otp);
