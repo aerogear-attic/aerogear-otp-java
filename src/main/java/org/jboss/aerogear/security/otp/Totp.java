@@ -105,8 +105,8 @@ public class Totp {
         int futureResponse = Math.max(DELAY_WINDOW, 0);
 
         for (int i = -pastResponse; i <= futureResponse; ++i) {
-            int secret = generate(this.secret, currentInterval - i);
-            if (secret == code) {
+            int candidate = generate(this.secret, currentInterval - i);
+            if (candidate == code) {
                 return true;
             }
         }
