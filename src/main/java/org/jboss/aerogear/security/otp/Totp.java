@@ -102,9 +102,8 @@ public class Totp {
         long currentInterval = clock.getCurrentInterval();
 
         int pastResponse = Math.max(DELAY_WINDOW, 0);
-        int futureResponse = Math.max(DELAY_WINDOW, 0);
 
-        for (int i = -pastResponse; i <= futureResponse; ++i) {
+        for (int i = pastResponse; i >= 0; --i) {
             int candidate = generate(this.secret, currentInterval - i);
             if (candidate == code) {
                 return true;
