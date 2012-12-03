@@ -122,6 +122,24 @@ public class TotpTest {
     }
 
     @Test
+    public void testOtpAfter31seconds() throws Exception {
+        totp = new Totp(sharedSecret, clock);
+        String otp = totp.now();
+        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(31));
+        totp = new Totp(sharedSecret, clock);
+        assertFalse("OTP should be invalid", totp.verify(otp));
+    }
+
+    @Test
+    public void testOtpAfter32seconds() throws Exception {
+        totp = new Totp(sharedSecret, clock);
+        String otp = totp.now();
+        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(31));
+        totp = new Totp(sharedSecret, clock);
+        assertFalse("OTP should be invalid", totp.verify(otp));
+    }
+
+    @Test
     public void testOtpAfter40seconds() throws Exception {
         totp = new Totp(sharedSecret, clock);
         String otp = totp.now();
@@ -135,6 +153,33 @@ public class TotpTest {
         totp = new Totp(sharedSecret, clock);
         String otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addElapsedTime(50));
+        totp = new Totp(sharedSecret, clock);
+        assertFalse("OTP should be invalid", totp.verify(otp));
+    }
+
+    @Test
+    public void testOtpAfter59seconds() throws Exception {
+        totp = new Totp(sharedSecret, clock);
+        String otp = totp.now();
+        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(59));
+        totp = new Totp(sharedSecret, clock);
+        assertFalse("OTP should be invalid", totp.verify(otp));
+    }
+
+    @Test
+    public void testOtpAfter60seconds() throws Exception {
+        totp = new Totp(sharedSecret, clock);
+        String otp = totp.now();
+        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(60));
+        totp = new Totp(sharedSecret, clock);
+        assertFalse("OTP should be invalid", totp.verify(otp));
+    }
+
+    @Test
+    public void testOtpAfter61seconds() throws Exception {
+        totp = new Totp(sharedSecret, clock);
+        String otp = totp.now();
+        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(61));
         totp = new Totp(sharedSecret, clock);
         assertFalse("OTP should be invalid", totp.verify(otp));
     }
