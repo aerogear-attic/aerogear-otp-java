@@ -106,7 +106,7 @@ public class TotpTest {
 
     @Test
     public void testOtpAfter31seconds() throws Exception {
-        accountForTimeStepWindow();
+        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(0)-1);
         String otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addElapsedTime(31));
         assertFalse("OTP should be invalid", totp.verify(otp));
@@ -114,7 +114,7 @@ public class TotpTest {
 
     @Test
     public void testOtpAfter32seconds() throws Exception {
-        accountForTimeStepWindow();
+        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(0)-1);
         String otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addElapsedTime(31));
         assertFalse("OTP should be invalid", totp.verify(otp));
@@ -122,7 +122,7 @@ public class TotpTest {
 
     @Test
     public void testOtpAfter40seconds() throws Exception {
-        accountForTimeStepWindow();
+        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(0)-1);
         String otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addElapsedTime(40));
         assertFalse("OTP should be invalid", totp.verify(otp));
@@ -130,7 +130,7 @@ public class TotpTest {
 
     @Test
     public void testOtpAfter50seconds() throws Exception {
-        accountForTimeStepWindow();
+        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(0)-1);
         String otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addElapsedTime(50));
         assertFalse("OTP should be invalid", totp.verify(otp));
@@ -138,7 +138,7 @@ public class TotpTest {
 
     @Test
     public void testOtpAfter59seconds() throws Exception {
-        accountForTimeStepWindow();
+        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(0)-1);
         String otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addElapsedTime(59));
         assertFalse("OTP should be invalid", totp.verify(otp));
@@ -146,7 +146,7 @@ public class TotpTest {
 
     @Test
     public void testOtpAfter60seconds() throws Exception {
-        accountForTimeStepWindow();
+        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(0)-1);
         String otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addElapsedTime(60));
         assertFalse("OTP should be invalid", totp.verify(otp));
@@ -154,13 +154,9 @@ public class TotpTest {
 
     @Test
     public void testOtpAfter61seconds() throws Exception {
-        accountForTimeStepWindow();
+        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(0)-1);
         String otp = totp.now();
         when(clock.getCurrentInterval()).thenReturn(addElapsedTime(61));
         assertFalse("OTP should be invalid", totp.verify(otp));
-    }
-    
-    private void accountForTimeStepWindow() {
-        when(clock.getCurrentInterval()).thenReturn(addElapsedTime(0)-1);
     }
 }
