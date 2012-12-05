@@ -23,7 +23,7 @@ This is compatible with Google Authenticator apps available for [Android](https:
 
 1. Time based OTP's
 
-        String secret = new Base32().random();
+        String secret = Base32.random();
         Totp totp = new Totp(secret);
         totp.now(); //427773
         
