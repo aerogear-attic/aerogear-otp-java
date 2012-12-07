@@ -17,26 +17,39 @@
 
 package org.jboss.aerogear.security.otp.api;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
-public class Clock {
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
-    private final int interval;
+public class ClockTest {
+
+    @Mock
     private Calendar calendar;
 
-    public Clock() {
-        interval = 30;
-        calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("UTC"));
+    @InjectMocks
+    private Clock clock = new Clock();
+
+
+    @Before
+    public void setUp() throws Exception {
+        MockitoAnnotations.initMocks(this);
+        Calendar gregorianCalendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("UTC"));
+        gregorianCalendar.set(2012, Calendar.DECEMBER, 21, 0, 0, 0);
+        when(calendar.getTimeInMillis()).thenReturn(gregorianCalendar.getTimeInMillis());
     }
 
-    public Clock(int interval) {
-        this.interval = interval;
-    }
-
-    public long getCurrentInterval() {
-        long currentTimeSeconds = calendar.getTimeInMillis() / 1000;
-        return currentTimeSeconds / interval;
+    @Test
+    public void testGetCurrentInterval() throws Exception {
+        final long interval = 45201600L;
+        assertEquals(interval, clock.getCurrentInterval());
     }
 }
