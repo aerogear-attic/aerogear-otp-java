@@ -34,16 +34,34 @@ public class Totp {
     private final Clock clock;
     private static final int DELAY_WINDOW = 1;
 
+    /**
+     * Initialize an OTP instance with the shared secret generated on Registration process
+     *
+     * @param secret Shared secret
+     */
     public Totp(String secret) {
         this.secret = secret;
         clock = new Clock();
     }
 
+    /**
+     * Initialize an OTP instance with the shared secret generated on Registration process
+     *
+     * @param secret Shared secret
+     * @param clock  Clock responsible for retrieve the current interval
+     */
     public Totp(String secret, Clock clock) {
         this.secret = secret;
         this.clock = clock;
     }
 
+    /**
+     * Prover - To be used only on the client side
+     * Retrieves the encoded URI to generated the QRCode required by Google Authenticator
+     *
+     * @param name Account name
+     * @return Encoded URI
+     */
     public String uri(String name) {
         try {
             return String.format("otpauth://totp/%s?secret=%s", URLEncoder.encode(name, "UTF-8"), secret);
@@ -52,14 +70,50 @@ public class Totp {
         }
     }
 
+    /**
+     * Retrieves the current OTP
+     *
+     * @return OTP
+     */
     public String now() {
         return Integer.toString(hash(secret, clock.getCurrentInterval()));
     }
-    
-    public int generate(String secret, long interval) {
+
+    /**
+     * Verifier - To be used only on the server side
+     * <p/>
+     * Taken from Google Authenticator with small modifications from
+     * {@see <a href="http://code.google.com/p/google-authenticator/source/browse/src/com/google/android/apps/authenticator/PasscodeGenerator.java?repo=android#212">PasscodeGenerator.java</a>}
+     * <p/>
+     * Verify a timeout code. The timeout code will be valid for a time
+     * determined by the interval period and the number of adjacent intervals
+     * checked.
+     *
+     * @param otp Timeout code
+     * @return True if the timeout code is valid
+     *         <p/>
+     *         Author: sweis@google.com (Steve Weis)
+     */
+    public boolean verify(String otp) {
+
+        long code = Long.parseLong(otp);
+        long currentInterval = clock.getCurrentInterval();
+
+        int pastResponse = Math.max(DELAY_WINDOW, 0);
+
+        for (int i = pastResponse; i >= 0; --i) {
+            int candidate = generate(this.secret, currentInterval - i);
+            if (candidate == code) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private int generate(String secret, long interval) {
         return hash(secret, interval);
     }
-    
+
     private int hash(String secret, long interval) {
         byte[] hash = new byte[0];
         try {
@@ -84,32 +138,4 @@ public class Totp {
         return binary % Digits.SIX.getValue();
     }
 
-    /**
-     * Taken from Google Authenticator with small modifications from
-     * {@see <a href="http://code.google.com/p/google-authenticator/source/browse/src/com/google/android/apps/authenticator/PasscodeGenerator.java?repo=android#212">PasscodeGenerator.java</a>}
-     *
-     * Verify a timeout code. The timeout code will be valid for a time
-     * determined by the interval period and the number of adjacent intervals
-     * checked.
-     *
-     * @param otp Timeout code
-     * @return True if the timeout code is valid
-     *
-     * @author sweis@google.com (Steve Weis)
-     */
-    public boolean verify(String otp) {
-
-        long code = Long.parseLong(otp);
-        long currentInterval = clock.getCurrentInterval();
-
-        int pastResponse = Math.max(DELAY_WINDOW, 0);
-
-        for (int i = pastResponse; i >= 0; --i) {
-            int candidate = generate(this.secret, currentInterval - i);
-            if (candidate == code) {
-                return true;
-            }
-        }
-        return false;
-    }
 }
