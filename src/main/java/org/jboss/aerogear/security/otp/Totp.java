@@ -133,7 +133,10 @@ public class Totp {
         // put selected bytes into result int
         int offset = hash[hash.length - 1] & 0xf;
 
-        int binary = ((hash[offset] & 0x7f) << 24) | ((hash[offset + 1] & 0xff) << 16) | ((hash[offset + 2] & 0xff) << 8) | (hash[offset + 3] & 0xff);
+        int binary = ((hash[offset] & 0x7f) << 24) |
+                ((hash[offset + 1] & 0xff) << 16) |
+                ((hash[offset + 2] & 0xff) << 8) |
+                (hash[offset + 3] & 0xff);
 
         return binary % Digits.SIX.getValue();
     }
