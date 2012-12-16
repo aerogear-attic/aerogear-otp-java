@@ -100,22 +100,6 @@ public class MotpTest {
     }
     
     @Test
-    public void testOtpAfter31seconds() throws Exception {
-        when(clock.getCurrentSeconds()).thenReturn(addElapsedTime(0) - 1);
-        String otp = motp.now();
-        when(clock.getCurrentSeconds()).thenReturn(addElapsedTime(31));
-        assertFalse("OTP should be invalid", motp.verify(otp));
-    }
-
-    @Test
-    public void testOtpAfter32seconds() throws Exception {
-        when(clock.getCurrentSeconds()).thenReturn(addElapsedTime(0) - 1);
-        String otp = motp.now();
-        when(clock.getCurrentSeconds()).thenReturn(addElapsedTime(31));
-        assertFalse("OTP should be invalid", motp.verify(otp));
-    }
-
-    @Test
     public void testOtpAfter40seconds() throws Exception {
         when(clock.getCurrentSeconds()).thenReturn(addElapsedTime(0) - 1);
         String otp = motp.now();
