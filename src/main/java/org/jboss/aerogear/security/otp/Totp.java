@@ -76,7 +76,7 @@ public class Totp {
      * @return OTP
      */
     public String now() {
-        return Integer.toString(hash(secret, clock.getCurrentInterval()));
+        return leftPadding(hash(secret, clock.getCurrentInterval()));
     }
 
     /**
@@ -139,6 +139,10 @@ public class Totp {
                 (hash[offset + 3] & 0xff);
 
         return binary % Digits.SIX.getValue();
+    }
+
+    private String leftPadding(int otp) {
+        return String.format("%06d", otp);
     }
 
 }
