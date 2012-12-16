@@ -31,6 +31,16 @@ This is compatible with Google Authenticator apps available for [Android](https:
         Thread.sleep(40);
         totp.verify("427773"); //false
          
+2. Mobile OTP's
+
+        String secret = Base32.random();
+		String pin = "1234";
+        Motp motp = new Motp(pin, secret);
+        motp.now(); //427773
+        
+        motp.verify("427773"); //true
+        Thread.sleep(40);
+        motp.verify("427773"); //false
 
 ## Working example
 
