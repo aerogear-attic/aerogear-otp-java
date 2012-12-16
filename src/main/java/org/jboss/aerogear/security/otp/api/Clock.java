@@ -23,7 +23,7 @@ import java.util.TimeZone;
 
 public class Clock {
 
-    private final int interval;
+    protected final int interval;
     private Calendar calendar;
 
     public Clock() {
@@ -34,9 +34,30 @@ public class Clock {
     public Clock(int interval) {
         this.interval = interval;
     }
+    
+    public long getCurrentSeconds(){
+    	return calendar.getTimeInMillis() / 1000;
+    }
 
     public long getCurrentInterval() {
-        long currentTimeSeconds = calendar.getTimeInMillis() / 1000;
-        return currentTimeSeconds / interval;
+        return getCurrentSeconds() / interval;
+    }
+    
+    public static class ExactClock extends Clock{
+		public ExactClock() {
+			super();
+		}
+
+		public ExactClock(int interval) {
+			super(interval);
+		}
+    	
+	    public long getCurrentSeconds(){
+	    	return System.currentTimeMillis() / 1000;
+	    }
+
+	    public long getCurrentInterval() {
+	        return getCurrentSeconds() / interval;
+	    }
     }
 }
