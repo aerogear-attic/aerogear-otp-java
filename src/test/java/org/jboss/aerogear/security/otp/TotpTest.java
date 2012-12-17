@@ -82,6 +82,7 @@ public class TotpTest {
         Totp totp = new Totp(secret, clock);
         String otp = totp.now();
         assertEquals("Generated token must be zero padded", otp, expected);
+        assertTrue("Generated token must be valid", totp.verify(otp));
     }
 
     @Test
