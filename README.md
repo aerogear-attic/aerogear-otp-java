@@ -13,7 +13,7 @@ This is compatible with Google Authenticator apps available for [Android](https:
         <dependency>
             <groupId>org.jboss.aerogear</groupId>
             <artifactId>aerogear-otp-java</artifactId>
-            <version>1.0.0.M1-20121217-SNAPSHOT</version>
+            <version>1.0.0.M1</version>
             <scope>compile</scope>
         </dependency>
        
