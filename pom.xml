@@ -26,6 +26,42 @@
     <version>1.0.0.M1</version>
     <packaging>jar</packaging>
 
+    <name>aerogear-otp-java</name>
+    <url>http://aerogear.org</url>
+
+    <parent>
+        <groupId>org.jboss</groupId>
+        <artifactId>jboss-parent</artifactId>
+        <version>6-beta-2</version>
+    </parent>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>abstractj</id>
+            <name>Bruno Oliveira</name>
+            <url>http://abstractj.org</url>
+            <email>bruno@abstractj.org</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:aerogear/aerogear-otp-java.git</connection>
+        <developerConnection>scm:git:git@github.com:aerogear/aerogear-otp-java.git</developerConnection>
+        <url>git@github.com:aerogear/aerogear-otp-java.git</url>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
