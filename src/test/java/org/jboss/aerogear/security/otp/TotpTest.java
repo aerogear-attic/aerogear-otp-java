@@ -85,6 +85,13 @@ public class TotpTest {
     }
 
     @Test
+    public void testCustomInterval() throws Exception {
+        Clock customClock = new Clock(20);
+        totp = new Totp(sharedSecret, customClock);
+        totp.now();
+    }
+
+    @Test
     public void testNow() throws Exception {
         String otp = totp.now();
         assertEquals(6, otp.length());
