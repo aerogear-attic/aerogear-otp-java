@@ -28,7 +28,6 @@ public class Clock {
 
     public Clock() {
         interval = 30;
-        calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("UTC"));
     }
 
     public Clock(int interval) {
@@ -36,6 +35,7 @@ public class Clock {
     }
 
     public long getCurrentInterval() {
+        calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("UTC"));
         long currentTimeSeconds = calendar.getTimeInMillis() / 1000;
         return currentTimeSeconds / interval;
     }
