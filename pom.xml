@@ -23,7 +23,7 @@
 
     <groupId>org.jboss.aerogear</groupId>
     <artifactId>aerogear-otp-java</artifactId>
-    <version>1.0.0.M8-20130125-SNAPSHOT</version>
+    <version>1.0.0.M8</version>
     <packaging>jar</packaging>
 
     <name>aerogear-otp-java</name>
