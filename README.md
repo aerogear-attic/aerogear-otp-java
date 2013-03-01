@@ -13,7 +13,7 @@ This API is compatible with Google Authenticator apps available for [Android](ht
         <dependency>
             <groupId>org.jboss.aerogear</groupId>
             <artifactId>aerogear-otp-java</artifactId>
-            <version>1.0.0.M1</version>
+            <version>1.0.0.CR1</version>
             <scope>compile</scope>
         </dependency>
        
