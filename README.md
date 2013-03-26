@@ -42,3 +42,5 @@ This API is compatible with Google Authenticator apps available for [Android](ht
 6. After that *john* account might be added 
 7. On your web browser go to *Try Google authenticator*
 8. Enter *username: john* and *password: 123* and use the current OTP on your mobile
+
+For more details, please refer to our [documentation](http://aerogear.org/docs/specs/aerogear-security-otp/)
