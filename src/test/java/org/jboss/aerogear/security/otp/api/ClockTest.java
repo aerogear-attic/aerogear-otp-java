@@ -39,7 +39,6 @@ public class ClockTest {
     @InjectMocks
     private Clock clock = new Clock();
 
-
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
