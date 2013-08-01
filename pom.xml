@@ -29,12 +29,11 @@
     <name>aerogear-otp-java</name>
     <url>http://aerogear.org</url>
 
-    <parent>
-        <groupId>org.jboss</groupId>
-        <artifactId>jboss-parent</artifactId>
-        <version>6-beta-2</version>
+   <parent>
+        <groupId>org.jboss.aerogear</groupId>
+        <artifactId>aerogear-parent</artifactId>
+        <version>0.1.0</version>
     </parent>
-
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
