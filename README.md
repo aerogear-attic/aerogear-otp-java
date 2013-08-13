@@ -44,3 +44,12 @@ This API is compatible with Google Authenticator apps available for [Android](ht
 8. Enter *username: john* and *password: 123* and use the current OTP on your mobile
 
 For more details, please refer to our [documentation](http://aerogear.org/docs/specs/aerogear-security-otp/)
+
+## Are you feeling brave? Try from the snapshot releases!
+
+     <dependency>
+         <groupId>org.jboss.aerogear</groupId>
+         <artifactId>aerogear-security</artifactId>
+         <version>1.0.1-SNAPSHOT</version>
+         <scope>compile</scope>
+     </dependency>
