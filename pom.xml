@@ -29,7 +29,7 @@
     <name>aerogear-otp-java</name>
     <url>http://aerogear.org</url>
 
-   <parent>
+    <parent>
         <groupId>org.jboss.aerogear</groupId>
         <artifactId>aerogear-parent</artifactId>
         <version>0.1.0</version>
