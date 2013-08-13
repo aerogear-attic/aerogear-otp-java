@@ -1,7 +1,21 @@
 language: java
 
+after_success: 
+  - "wget -c http://ftp.unicamp.br/pub/apache/maven/maven-3/3.1.0/binaries/apache-maven-3.1.0-bin.tar.gz && mkdir maven && tar xzvf apache-maven-3.1.0-bin.tar.gz -C maven/"
+  - "git clone -b maven `git config --get remote.origin.url` target/maven"
+  - "maven/apache-maven-3.1.0/bin/mvn deploy -DrepositoryId=jboss-snapshots-repository --settings target/maven/settings.xml"
+
 jdk:
-  - oraclejdk7
-  - openjdk6
+- oraclejdk7
+- openjdk6
+
 notifications:
   irc: "irc.freenode.org#aerogear"
+
+branches:
+  only:
+    - master
+env:
+  global:
+  - secure: mK7U0ewmof9d327U3TwSydvJEZkmp+w5+mPjniPVXevhz0Tt8Wn6MjyfA+1IjfqrP53RgrmeYOB09k16IjENbpJp17XyiDXjsTYF9QUZrpsI0Uxbv8IvkTTsm0U7A9jD+wz5DqSJwlkSQaaFZeyyxoSZnoi2SCDXzc5QCcPvH4Q=
+  - secure: ExeQBeyzH5TZwHQ6waospN3MZ5cqTau9lE3WgQkOhl4YfIJhh531cILJf9iljY594FWexThVa0wjvCJVnYgphNn70+UjksHtHYUClN24O3HSZnOmzR/W2xCRPkjIpb1OENoCEF+z6y/Pbr/qI3sWGshEPBHKOCCrHKoDFXoGs4k=
