@@ -1,21 +1,19 @@
 language: java
-
-after_success: 
-  - "wget -c http://ftp.unicamp.br/pub/apache/maven/maven-3/3.1.0/binaries/apache-maven-3.1.0-bin.tar.gz && mkdir maven && tar xzvf apache-maven-3.1.0-bin.tar.gz -C maven/"
-  - "git clone -b maven `git config --get remote.origin.url` target/maven"
-  - "maven/apache-maven-3.1.0/bin/mvn deploy -Durl=https://repository.jboss.org/nexus/content/repositories/snapshots/ -DrepositoryId=jboss-snapshots-repository --settings target/maven/settings.xml"
-
+after_success:
+- wget -c http://ftp.unicamp.br/pub/apache/maven/maven-3/3.1.0/binaries/apache-maven-3.1.0-bin.tar.gz
+  && mkdir maven && tar xzvf apache-maven-3.1.0-bin.tar.gz -C maven/
+- git clone -b maven `git config --get remote.origin.url` target/maven
+- maven/apache-maven-3.1.0/bin/mvn deploy -Durl=https://repository.jboss.org/nexus/content/repositories/snapshots/
+  -DrepositoryId=jboss-snapshots-repository --settings target/maven/settings.xml
 jdk:
 - oraclejdk7
 - openjdk6
-
 notifications:
-  irc: "irc.freenode.org#aerogear"
-
+  irc: irc.freenode.org#aerogear
 branches:
   only:
-    - master
+  - master
 env:
   global:
-  - secure: mK7U0ewmof9d327U3TwSydvJEZkmp+w5+mPjniPVXevhz0Tt8Wn6MjyfA+1IjfqrP53RgrmeYOB09k16IjENbpJp17XyiDXjsTYF9QUZrpsI0Uxbv8IvkTTsm0U7A9jD+wz5DqSJwlkSQaaFZeyyxoSZnoi2SCDXzc5QCcPvH4Q=
-  - secure: ExeQBeyzH5TZwHQ6waospN3MZ5cqTau9lE3WgQkOhl4YfIJhh531cILJf9iljY594FWexThVa0wjvCJVnYgphNn70+UjksHtHYUClN24O3HSZnOmzR/W2xCRPkjIpb1OENoCEF+z6y/Pbr/qI3sWGshEPBHKOCCrHKoDFXoGs4k=
+  - secure: JQRG1d6XpQojpLDHrRtXZkt8MPNUbVtR/nd1vGgqjSNz0Qu2LJxa3IkeQXsfplrZrNgw1J8Ud3tXRMRhS17Kngm85b7TuUvv6l95lpfLneRkxV86P2vM3vODIZO5QeB38xZoVNWv8Zv41Ca6BhkVsgYOqB1tgmCM3YIKhGJnu4U=
+  - secure: yoeLOf5NK9QRm7aeozSqng39LqQ2wUtEImMgM6g3DGidO9foXBSP8F6XRu5quFgFRPBgDszE5pI7SEegdxYLyen92egeNcX3yNO6Bk+rZZN9WV3nxTcDoODMcB/T487oTqKQPtkG1RbP0ygc0rIO99keEk3hD2hPZSntVEEtYj4=
