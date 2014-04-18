@@ -34,6 +34,7 @@
         <artifactId>aerogear-parent</artifactId>
         <version>0.1.0</version>
     </parent>
+
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -60,8 +61,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>4.8</junit.version>
-        <mockito.version>1.9.0</mockito.version>
     </properties>
 
     <build>
@@ -119,18 +118,33 @@
         </pluginManagement>
     </build>
 
+    <dependencyManagement>
+
+        <dependencies>
+        
+            <!-- AeroGear Test Dependencies BOM Imports -->
+            <dependency>
+                <groupId>org.jboss.aerogear</groupId>
+                <artifactId>aerogear-test-bom</artifactId>
+                <version>0.1.1-SNAPSHOT</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
+
 </project>
