@@ -21,10 +21,9 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
-public class Clock {
+public class Clock implements Ticker {
 
     private final int interval;
-    private Calendar calendar;
 
     public Clock() {
         interval = 30;
@@ -34,8 +33,8 @@ public class Clock {
         this.interval = interval;
     }
 
-    public long getCurrentInterval() {
-        calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("UTC"));
+    public long tick() {
+        Calendar calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("UTC"));
         long currentTimeSeconds = calendar.getTimeInMillis() / 1000;
         return currentTimeSeconds / interval;
     }

@@ -51,6 +51,6 @@ public class ClockTest {
     @Ignore
     public void testGetCurrentInterval() throws Exception {
         final long interval = 45201600L;
-        assertEquals(interval, clock.getCurrentInterval());
+        assertEquals(interval, clock.tick());
     }
 }

@@ -32,4 +32,17 @@ public class Base32Test {
     public void testDecode() throws Exception {
         assertEquals(10, Base32.decode(Base32.random()).length);
     }
+
+    @Test
+    public void testEncodeDecode() throws Exception {
+        //given
+        String code = "thecode";
+
+        //when
+        final String encoded = Base32.encode(code.getBytes());
+        String result = new String(Base32.decode(encoded));
+
+        //then
+        assertEquals(code, result);
+    }
 }
