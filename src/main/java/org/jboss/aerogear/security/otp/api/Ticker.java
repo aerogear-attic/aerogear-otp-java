@@ -16,6 +16,13 @@
  */
 package org.jboss.aerogear.security.otp.api;
 
+/**
+ * A ticker ticks away each time, is either a clock or a counter.
+ */
 public interface Ticker {
+  /**
+   * Next tick
+   * @return the next tick
+   */
   long tick();
 }
