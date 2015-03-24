@@ -43,14 +43,13 @@ This API is compatible with Google Authenticator apps available for [Android](ht
 
 ## Working example
 
-1. Go to [http://controller-aerogear.rhcloud.com/aerogear-controller-demo/login](http://controller-aerogear.rhcloud.com/aerogear-controller-demo/login)
-2. Login with *username: john* and *password: 123*. Click on *Give it a try*.
-3. Now open google authenticator application at your phone
-4. Go to *Add account*
-5. Then ask to *Scan barcode*
-6. After that *john* account might be added 
-7. On your web browser go to *Try Google authenticator*
-8. Enter *username: john* and *password: 123* and use the current OTP on your mobile
+1. Follow directions to install [Shoot 'n Share backend](https://github.com/aerogear/aerogear-backend-cookbook/blob/master/Shoot/README.md)
+1. Open the [console shoot-realm credentials](http://localhost:8080/auth/admin/master/console/#/realms/shoot-realm/required-credentials) and add totp in `Required User Credentials`
+1. Open Shoot 'n Share backend http://localhost:8080/shoot/photos
+1. Login with username: *user* and password: *password*.
+1. Now open [android otp client application](https://github.com/aerogear/aerogear-otp-android-demo) on your phone
+1. Then scan *Scan barcode*
+1. Enter the current OTP on your mobile
 
 For more details, please refer to our [documentation](http://aerogear.org/docs/specs/aerogear-security-otp/)
 
