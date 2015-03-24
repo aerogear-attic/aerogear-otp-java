@@ -105,85 +105,69 @@ public class TotpTest {
 
     @Test
     public void testOtpAfter10seconds() throws Exception {
-        String otp = totp.now();
-        when(clock.tick()).thenReturn(addElapsedTime(10));
-        assertTrue("OTP should be valid", totp.verify(otp));
+        intervalTestValid(10);
     }
 
     @Test
     public void testOtpAfter20seconds() throws Exception {
-        String otp = totp.now();
-        when(clock.tick()).thenReturn(addElapsedTime(20));
-        assertTrue("OTP should be valid", totp.verify(otp));
+        intervalTestValid(20);
     }
 
     @Test
     public void testOtpAfter25seconds() throws Exception {
-        String otp = totp.now();
-        when(clock.tick()).thenReturn(addElapsedTime(25));
-        assertTrue("OTP should be valid", totp.verify(otp));
+        intervalTestValid(25);
     }
 
     @Test
     public void testOtpAfter30seconds() throws Exception {
-        String otp = totp.now();
-        when(clock.tick()).thenReturn(addElapsedTime(30));
-        assertTrue("OTP should be valid", totp.verify(otp));
+        intervalTestValid(30);
     }
 
     @Test
     public void testOtpAfter31seconds() throws Exception {
-        when(clock.tick()).thenReturn(addElapsedTime(0) - 1);
-        String otp = totp.now();
-        when(clock.tick()).thenReturn(addElapsedTime(31));
-        assertFalse("OTP should be invalid", totp.verify(otp));
+        intervalTestInvalid(31);
     }
 
     @Test
     public void testOtpAfter32seconds() throws Exception {
-        when(clock.tick()).thenReturn(addElapsedTime(0) - 1);
-        String otp = totp.now();
-        when(clock.tick()).thenReturn(addElapsedTime(31));
-        assertFalse("OTP should be invalid", totp.verify(otp));
+        intervalTestInvalid(32);
     }
 
     @Test
     public void testOtpAfter40seconds() throws Exception {
-        when(clock.tick()).thenReturn(addElapsedTime(0) - 1);
-        String otp = totp.now();
-        when(clock.tick()).thenReturn(addElapsedTime(40));
-        assertFalse("OTP should be invalid", totp.verify(otp));
+        intervalTestInvalid(40);
     }
 
     @Test
     public void testOtpAfter50seconds() throws Exception {
-        when(clock.tick()).thenReturn(addElapsedTime(0) - 1);
-        String otp = totp.now();
-        when(clock.tick()).thenReturn(addElapsedTime(50));
-        assertFalse("OTP should be invalid", totp.verify(otp));
+        intervalTestInvalid(50);
     }
 
     @Test
     public void testOtpAfter59seconds() throws Exception {
-        when(clock.tick()).thenReturn(addElapsedTime(0) - 1);
-        String otp = totp.now();
-        when(clock.tick()).thenReturn(addElapsedTime(59));
-        assertFalse("OTP should be invalid", totp.verify(otp));
+        intervalTestInvalid(59);
     }
 
     @Test
     public void testOtpAfter60seconds() throws Exception {
-        when(clock.tick()).thenReturn(addElapsedTime(0) - 1);
-        String otp = totp.now();
-        when(clock.tick()).thenReturn(addElapsedTime(60));
-        assertFalse("OTP should be invalid", totp.verify(otp));
+        intervalTestInvalid(60);
     }
 
     @Test
     public void testOtpAfter61seconds() throws Exception {
+        intervalTestInvalid(61);
+    }
+
+    private void intervalTestValid(int time) {
+        String otp = totp.now();
+        when(clock.tick()).thenReturn(addElapsedTime(time));
+        assertTrue("OTP should be valid", totp.verify(otp));
+    }
+
+    private void intervalTestInvalid(int time) {
         when(clock.tick()).thenReturn(addElapsedTime(0) - 1);
         String otp = totp.now();
-        when(clock.tick()).thenReturn(addElapsedTime(61));
+        when(clock.tick()).thenReturn(addElapsedTime(time));
         assertFalse("OTP should be invalid", totp.verify(otp));
     }
 }
