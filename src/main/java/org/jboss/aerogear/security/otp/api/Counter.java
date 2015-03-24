@@ -14,18 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.jboss.aerogear.security.otp.api;
 
-import org.junit.Test;
+/**
+ * Increases the counter each time.
+ */
+public class Counter implements Ticker {
+  private long counter = -1;
 
-import static junit.framework.Assert.assertEquals;
+  @Override
+  public long tick() {
+    return ++counter;
+  }
 
-public class HmacTest {
-
-    @Test
-    public void testDigest() throws Exception {
-        byte[] hash = new Hmac(Hash.SHA1, Base32.decode(Base32.random()), new Clock().tick()).digest();
-        assertEquals(20, hash.length);
-    }
+  public long getCurrentTick() {
+    return counter;
+  }
 }

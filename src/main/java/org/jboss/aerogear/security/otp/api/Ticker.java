@@ -14,18 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.jboss.aerogear.security.otp.api;
 
-import org.junit.Test;
-
-import static junit.framework.Assert.assertEquals;
-
-public class HmacTest {
-
-    @Test
-    public void testDigest() throws Exception {
-        byte[] hash = new Hmac(Hash.SHA1, Base32.decode(Base32.random()), new Clock().tick()).digest();
-        assertEquals(20, hash.length);
-    }
+/**
+ * A ticker ticks away each time, is either a clock or a counter.
+ */
+public interface Ticker {
+  /**
+   * Next tick
+   * @return the next tick
+   */
+  long tick();
 }
