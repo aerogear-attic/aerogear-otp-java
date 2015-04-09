@@ -48,7 +48,7 @@ This API is compatible with Google Authenticator apps available for [Android](ht
 1. Open Shoot 'n Share backend http://localhost:8080/shoot/photos
 1. Login with username: *user* and password: *password*.
 1. Now open [android otp client application](https://github.com/aerogear/aerogear-otp-android-demo) on your phone
-1. Then scan *Scan barcode*
+1. Then scan the *Scan QRCode*
 1. Enter the current OTP on your mobile
 
 For more details, please refer to our [documentation](http://aerogear.org/docs/specs/aerogear-security-otp/)
