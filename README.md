@@ -44,7 +44,7 @@ This API is compatible with Google Authenticator apps available for [Android](ht
 ## Working example
 
 1. Follow directions to install [Shoot 'n Share backend](https://github.com/aerogear/aerogear-backend-cookbook/blob/master/Shoot/README.md)
-1. Open the [console shoot-realm credentials](http://localhost:8080/auth/admin/master/console/#/realms/shoot-realm/required-credentials) and add totp in `Required User Credentials`
+1. Open the [console shoot-realm credentials](http://localhost:8080/auth/admin/master/console/#/realms/shoot-realm/required-credentials) and add TOTP in `Required User Credentials`
 1. Open Shoot 'n Share backend http://localhost:8080/shoot/photos
 1. Login with username: *user* and password: *password*.
 1. Now open [android otp client application](https://github.com/aerogear/aerogear-otp-android-demo) on your phone
