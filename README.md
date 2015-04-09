@@ -47,7 +47,7 @@ This API is compatible with Google Authenticator apps available for [Android](ht
 1. Open the [console shoot-realm credentials](http://localhost:8080/auth/admin/master/console/#/realms/shoot-realm/required-credentials) and add TOTP in `Required User Credentials`
 1. Open Shoot 'n Share backend http://localhost:8080/shoot/photos
 1. Login with username: *user* and password: *password*.
-1. Now open [android otp client application](https://github.com/aerogear/aerogear-android-cookbook/tree/master/Two-Factor) on your phone
+1. Now open [android OTP client application](https://github.com/aerogear/aerogear-android-cookbook/tree/master/Two-Factor) on your phone
 1. Then scan the *Scan QRCode*
 1. Enter the current OTP on your mobile
 
