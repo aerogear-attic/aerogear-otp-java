@@ -32,7 +32,7 @@ public class Totp {
 
     private final String secret;
     private final Clock clock;
-    private static final int DELAY_WINDOW = 1;
+    private int skewInterval = 1;
 
     /**
      * Initialize an OTP instance with the shared secret generated on Registration process
@@ -76,7 +76,8 @@ public class Totp {
      * @return OTP
      */
     public String now() {
-        return leftPadding(hash(secret, clock.getCurrentInterval()));
+        long currentInterval = clock.getCurrentInterval();
+        return leftPadding(hash(secret, currentInterval));
     }
 
     /**
@@ -99,10 +100,9 @@ public class Totp {
         long code = Long.parseLong(otp);
         long currentInterval = clock.getCurrentInterval();
 
-        int pastResponse = Math.max(DELAY_WINDOW, 0);
-
-        for (int i = pastResponse; i >= 0; --i) {
-            int candidate = generate(this.secret, currentInterval - i);
+        for (int i = skewInterval; i >= -skewInterval; --i) {
+            long intervalToCheck = currentInterval - i;
+            int candidate = generate(this.secret, intervalToCheck);
             if (candidate == code) {
                 return true;
             }
@@ -145,4 +145,12 @@ public class Totp {
         return String.format("%06d", otp);
     }
 
+    /**
+     * The number of intervals to check before and after the current interval. Default is 1, i.e. a 90 second window for a 30 second clock.
+     *
+     * @param skewInterval The skew interval number.
+     */
+    public void setSkewInterval(int skewInterval) {
+        this.skewInterval = skewInterval;
+    }
 }
