@@ -17,14 +17,9 @@
 
 package org.jboss.aerogear.security.otp.api;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
-
 public class Clock {
 
     private final int interval;
-    private Calendar calendar;
 
     public Clock() {
         interval = 30;
@@ -35,8 +30,6 @@ public class Clock {
     }
 
     public long getCurrentInterval() {
-        calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("UTC"));
-        long currentTimeSeconds = calendar.getTimeInMillis() / 1000;
-        return currentTimeSeconds / interval;
+        return System.currentTimeMillis() / 1000 / interval;
     }
 }
