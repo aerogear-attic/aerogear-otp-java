@@ -1,6 +1,6 @@
 # aerogear-otp-java
 
-[![Travis](https://img.shields.io/travis/aerogear/aerogear-otp-java/master.svg)](https://github.com/aerogear/aerogear-otp-java)
+[![circle-ci](https://img.shields.io/circleci/project/github/aerogear/aerogear-otp-java/master.svg)](https://circleci.com/gh/aerogear/aerogear-otp-java)
 [![License](https://img.shields.io/badge/-Apache%202.0-blue.svg)](https://opensource.org/s/Apache-2.0)
 [![Maven Central](https://img.shields.io/maven-central/v/org.jboss.aerogear/aerogear-otp-java.svg)](http://search.maven.org/#search%7Cga%7C1%7Caerogear-otp-java)
 [![Javadocs](http://www.javadoc.io/badge/org.jboss.aerogear/aerogear-otp-java.svg?color=blue)](http://www.javadoc.io/doc/org.jboss.aerogear/aerogear-otp-java)
