@@ -1,4 +1,11 @@
-# aerogear-otp-java - Java One Time Password API
+# aerogear-otp-java
+
+[![Travis](https://img.shields.io/travis/aerogear/aerogear-otp-java/master.svg)](https://github.com/aerogear/aerogear-otp-java)
+[![License](https://img.shields.io/badge/-Apache%202.0-blue.svg)](https://opensource.org/s/Apache-2.0)
+[![Maven Central](https://img.shields.io/maven-central/v/org.jboss.aerogear/aerogear-otp-java.svg)](http://search.maven.org/#search%7Cga%7C1%7Caerogear-otp-java)
+[![Javadocs](http://www.javadoc.io/badge/org.jboss.aerogear/aerogear-otp-java.svg?color=blue)](http://www.javadoc.io/doc/org.jboss.aerogear/aerogear-otp-java)
+
+## Java One Time Password API
 
 A Java library for generating one time passwords according to [RFC 4226.](http://tools.ietf.org/html/rfc4226).
 
@@ -13,55 +20,38 @@ This API is compatible with Google Authenticator apps available for [Android](ht
 | Mailing lists:  | [aerogear-users](http://aerogear-users.1116366.n5.nabble.com/) ([subscribe](https://lists.jboss.org/mailman/listinfo/aerogear-users))  |
 |                 | [aerogear-dev](http://aerogear-dev.1069024.n5.nabble.com/) ([subscribe](https://lists.jboss.org/mailman/listinfo/aerogear-dev))  |
 
-## how to create a new project
+## Usage
 
-### basic use case
+### Android Studio
 
-1. add the maven dependency
+Add to your application's `build.gradle` file
 
-        <dependency>
-            <groupId>org.jboss.aerogear</groupId>
-            <artifactId>aerogear-otp-java</artifactId>
-            <version>1.0.0</version>
-            <scope>compile</scope>
-        </dependency>
-       
-## Getting started
+```groovy
+dependencies {
+  compile 'org.jboss.aerogear:aerogear-otp-java:1.0.0'
+}
+```
 
-### Use 
+### Maven
 
-1. Time based OTP's
+Include the following dependencies in your project's `pom.xml`
 
-        String secret = Base32.random();
-        Totp totp = new Totp(secret);
-        totp.now(); //427773
-        
-        totp.verify("427773"); //true
-        Thread.sleep(40);
-        totp.verify("427773"); //false
-         
+```xml
+<dependency>
+  <groupId>org.jboss.aerogear</groupId>
+  <artifactId>aerogear-otp-java</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
 
-## Working example
+## Demo apps
 
-1. Go to [http://controller-aerogear.rhcloud.com/aerogear-controller-demo/login](http://controller-aerogear.rhcloud.com/aerogear-controller-demo/login)
-2. Login with *username: john* and *password: 123*. Click on *Give it a try*.
-3. Now open google authenticator application at your phone
-4. Go to *Add account*
-5. Then ask to *Scan barcode*
-6. After that *john* account might be added 
-7. On your web browser go to *Try Google authenticator*
-8. Enter *username: john* and *password: 123* and use the current OTP on your mobile
+Take a look in our demo apps
 
-For more details, please refer to our [documentation](http://aerogear.org/docs/specs/aerogear-security-otp/)
+* [Android](https://github.com/aerogear/aerogear-android-cookbook/tree/master/Two-Factor)
+* [iOS](https://github.com/aerogear/aerogear-ios-cookbook/tree/master/Two-Factor)
 
-## Are you feeling brave? Try from the snapshot releases!
-
-     <dependency>
-         <groupId>org.jboss.aerogear</groupId>
-         <artifactId>aerogear-security</artifactId>
-         <version>1.0.1-SNAPSHOT</version>
-         <scope>compile</scope>
-     </dependency>
+If you wanna test thoses app without need to run you own server you can use the [browser-authenticator](https://daplie.github.io/browser-authenticator/) page
 
 ## Documentation
 
