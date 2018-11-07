@@ -39,7 +39,7 @@ import java.util.Locale;
 public class Base32 {
     // singleton
 
-    private static final int SECRET_SIZE = 10;
+    private static final int SECRET_SIZE = 16;
 
     private static final SecureRandom RANDOM = new SecureRandom();
 
